@@ -12,4 +12,4 @@ LPM - Obrót kamery
 W - Rozpoczęcie animacji chodzenia
 ESC - Zamknięcie aplikacji
 
-![Sample Screenshot](https://github.com/krzl/Graphics-Engine)
+!(https://github.com/krzl/Graphics-Engine)
