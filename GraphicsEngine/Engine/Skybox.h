@@ -18,9 +18,9 @@ namespace Kz
 
 	private:
 
-		RenderPerEntityInfo     m_entityInfo;
-		Cube*                   m_cube;
-		TextureCubemap*         m_cubemap;
+		RenderPerEntityInfo		m_entityInfo;
+		Cube*					m_cube;
+		TextureCubemap*			m_cubemap;
 
 		Skybox(EntityManager& modelManager, TextureCreator& textureCreator,
 			const std::string& skyboxFilepath, ShaderProgram& shader);
@@ -29,8 +29,8 @@ namespace Kz
 
 		~Skybox();
 
-		void                    SetViewport(Viewport& viewport);
-		void                    PreRender(RenderSystem& renderSystem);
-		void                    Render();
+		void					SetViewport(Viewport& viewport);
+		void					PreRender(RenderSystem& renderSystem);
+		void					Render();
 	};
 }

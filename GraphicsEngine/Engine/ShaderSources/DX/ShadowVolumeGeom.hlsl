@@ -6,37 +6,37 @@
 
 struct GeometryInput
 {
-	float4 position : SV_POSITION;
+	float4		position : SV_POSITION;
 };
 
 struct GeometryOutput
 {
-	float4 position : SV_POSITION;
+	float4		position : SV_POSITION;
 };
 
 cbuffer PerFrame : register(b0)
 {
-	float4x4    pvMatrix;
-	float3      cameraPos;
-	float       perFrameSpacing0;
-	float3      cameraUp;
-	float       perFrameSpacing1;
-	float2      screenSize;
-	float       deltaTime;
-	float       perFrameSpacing2;
+	float4x4	pvMatrix;
+	float3		cameraPos;
+	float		perFrameSpacing0;
+	float3		cameraUp;
+	float		perFrameSpacing1;
+	float2		screenSize;
+	float		deltaTime;
+	float		perFrameSpacing2;
 };
 
 cbuffer PerLight : register(b2)
 {
-	float3      position;
-	int         type;
-	float4      ambient;
-	float4      diffuse;
-	float4      specular;
-	float3      direction;
-	float       cutoff;
-	float3      attenuation;
-	int         spotExponent;
+	float3		position;
+	int			type;
+	float4		ambient;
+	float4		diffuse;
+	float4		specular;
+	float3		direction;
+	float		cutoff;
+	float3		attenuation;
+	int			spotExponent;
 };
 
 void EmitQuad(float3 startVertex, float3 endVertex, 

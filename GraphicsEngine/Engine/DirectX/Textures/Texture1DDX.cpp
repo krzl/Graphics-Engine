@@ -9,16 +9,16 @@ namespace Kz
 		TextureDX(device, context, filtering, wrap)
 	{
 		D3D11_TEXTURE1D_DESC desc;
-		desc.Width = width;
-		desc.MipLevels = desc.ArraySize = 1;
-		desc.Format = GetFormat(format);
-		desc.Usage = GetUsage(usage);
-		desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-		desc.CPUAccessFlags = GetCPUAccessFlag(access);
-		desc.MiscFlags = generateMipmaps ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0;
+		desc.Width			= width;
+		desc.MipLevels		= desc.ArraySize = 1;
+		desc.Format			= GetFormat(format);
+		desc.Usage			= GetUsage(usage);
+		desc.BindFlags		= D3D11_BIND_SHADER_RESOURCE;
+		desc.CPUAccessFlags	= GetCPUAccessFlag(access);
+		desc.MiscFlags		= generateMipmaps ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0;
 
-		m_sizeByte = GetSizeByte(format);
-		m_width = width;
+		m_width		= width;
+		m_sizeByte	= GetSizeByte(format);
 
 		D3D11_SUBRESOURCE_DATA dataInfo = { 0 };
 		dataInfo.pSysMem = data;

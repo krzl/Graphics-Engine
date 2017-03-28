@@ -11,9 +11,9 @@ namespace Kz
 {
 	AmbientLight::AmbientLight(Material& material)
 	{
-		m_lightCube = (Entity*)m_entityManager->CreateCube(1.0f, 1.0f, 1.0f, material);
-		m_lightInfo.ambient = 0.0f;
-		m_lightInfo.type = AMBIENT_LIGHT;
+		m_lightCube			= (Entity*)m_entityManager->CreateCube(1.0f, 1.0f, 1.0f, material);
+		m_lightInfo.ambient	= 0.0f;
+		m_lightInfo.type	= AMBIENT_LIGHT;
 	}
 
 	const Vector4f& AmbientLight::GetAmbient() const

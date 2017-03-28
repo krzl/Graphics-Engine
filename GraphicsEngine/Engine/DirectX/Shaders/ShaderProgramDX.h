@@ -18,8 +18,8 @@ namespace Kz
 
 	private:
 
-		ID3D11Device*           m_device;
-		ID3D11DeviceContext*    m_context;
+		ID3D11Device*			m_device;
+		ID3D11DeviceContext*	m_context;
 		
 		ShaderProgramDX(ID3D11Device* device, ID3D11DeviceContext* context, 
 			std::vector<Shader*>& shaders, ShaderManager& srManager);

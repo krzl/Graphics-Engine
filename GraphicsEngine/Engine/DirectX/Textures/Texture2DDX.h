@@ -12,12 +12,12 @@ namespace Kz
 
 	private:
 
-		int                 m_width;
-		int                 m_height;
+		int					m_width;
+		int					m_height;
 
-		ID3D11Texture2D*    m_texture;
+		ID3D11Texture2D*	m_texture;
 
-		ID3D11Texture2D*    m_stagingTexture = NULL;
+		ID3D11Texture2D*	m_stagingTexture = NULL;
 
 		Texture2DDX(ID3D11Device* device, ID3D11DeviceContext* context, int width,
 			int height, void* data, DataFormat format,
@@ -29,6 +29,6 @@ namespace Kz
 
 	public:
 
-		virtual Vector4f    GetTextureData(int x, int y);
+		virtual Vector4f	GetTextureData(int x, int y);
 	};
 }

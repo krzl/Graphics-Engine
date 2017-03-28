@@ -12,8 +12,8 @@ namespace Kz
 	Skybox::Skybox(EntityManager& modelManager, TextureCreator& textureCreator,
 		const std::string& skyboxFilepath, ShaderProgram& shader)
 	{
-		m_cube = modelManager.CreateCube(1.0f, shader);
-		m_cubemap = textureCreator.CreateTextureCubemap(skyboxFilepath);
+		m_cube		= modelManager.CreateCube(1.0f, shader);
+		m_cubemap	= textureCreator.CreateTextureCubemap(skyboxFilepath);
 
 		m_entityInfo.scaleVector = Vector3f(1.0f, 1.0f, 1.0f);
 	}

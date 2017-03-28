@@ -21,17 +21,17 @@ namespace Kz
 		}
 
 		D3D11_TEXTURE2D_DESC desc;
-		desc.Width = width;
-		desc.Height = height;
-		desc.MipLevels = desc.ArraySize = 1;
-		desc.Format = GetFormat(format);
-		desc.Usage = GetUsage(usage);
-		desc.SampleDesc.Count = 1;
-		desc.SampleDesc.Quality = 0;
-		desc.BindFlags = bindFlags;
-		desc.CPUAccessFlags = GetCPUAccessFlag(access);
+		desc.Width				= width;
+		desc.Height				= height;
+		desc.MipLevels			= desc.ArraySize = 1;
+		desc.Format				= GetFormat(format);
+		desc.Usage				= GetUsage(usage);
+		desc.SampleDesc.Count	= 1;
+		desc.SampleDesc.Quality	= 0;
+		desc.BindFlags			= bindFlags;
+		desc.CPUAccessFlags		= GetCPUAccessFlag(access);
 		//desc.MiscFlags = generateMipmaps ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0;
-		desc.MiscFlags = 0;
+		desc.MiscFlags			= 0;
 
 		m_sizeByte = GetSizeByte(format);
 
@@ -44,8 +44,8 @@ namespace Kz
 		{
 			D3D11_SUBRESOURCE_DATA dataInfo = { 0 };
 
-			dataInfo.pSysMem = data;
-			dataInfo.SysMemPitch = width * m_sizeByte;
+			dataInfo.pSysMem		= data;
+			dataInfo.SysMemPitch	= width * m_sizeByte;
 
 			subresData = &dataInfo;
 		}
@@ -55,16 +55,16 @@ namespace Kz
 		if (usage == USAGE_RENDER_TARGET)
 		{
 			D3D11_TEXTURE2D_DESC stagingDesc;
-			stagingDesc.Width = width;
-			stagingDesc.Height = height;
-			stagingDesc.MipLevels = stagingDesc.ArraySize = 1;
-			stagingDesc.Format = GetFormat(format);
-			stagingDesc.Usage = D3D11_USAGE_STAGING;
-			stagingDesc.SampleDesc.Count = 1;
-			stagingDesc.SampleDesc.Quality = 0;
-			stagingDesc.BindFlags = 0;
-			stagingDesc.CPUAccessFlags = GetCPUAccessFlag(access);
-			stagingDesc.MiscFlags = 0;
+			stagingDesc.Width				= width;
+			stagingDesc.Height				= height;
+			stagingDesc.MipLevels			= stagingDesc.ArraySize = 1;
+			stagingDesc.Format				= GetFormat(format);
+			stagingDesc.Usage				= D3D11_USAGE_STAGING;
+			stagingDesc.SampleDesc.Count	= 1;
+			stagingDesc.SampleDesc.Quality	= 0;
+			stagingDesc.BindFlags			= 0;
+			stagingDesc.CPUAccessFlags		= GetCPUAccessFlag(access);
+			stagingDesc.MiscFlags			= 0;
 
 			DXCALL_(device->CreateTexture2D(&stagingDesc, NULL, &m_stagingTexture));
 		}

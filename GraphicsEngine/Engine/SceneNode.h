@@ -17,18 +17,18 @@ namespace Kz
 
 	private:
 
-		Scene&                          m_scene;
+		Scene&							m_scene;
 
-		SceneNode*                      m_parentNode;
+		SceneNode*						m_parentNode;
 
-		Vector3f                        m_position;
-		Quaternion                      m_rotation;
-		Vector3f                        m_scale;
+		Vector3f						m_position;
+		Quaternion						m_rotation;
+		Vector3f						m_scale;
 
-		Matrix4f                        m_transformMatrix;
-		bool                            m_isUpdated = false;
+		Matrix4f						m_transformMatrix;
+		bool							m_isUpdated = false;
 
-		std::vector<SceneNode*>         m_nodes;
+		std::vector<SceneNode*>			m_nodes;
 
 		SceneNode(Scene& scene) :
 			m_scene(scene),
@@ -50,34 +50,34 @@ namespace Kz
 			m_scale(scale)
 		{}
 
-		void                            SetLookAtMatrix();
-		void                            SetParentNode(SceneNode* parentNode);
-		void                            Update();
+		void							SetLookAtMatrix();
+		void							SetParentNode(SceneNode* parentNode);
+		void							Update();
 
 	public:
 
 		~SceneNode();
 
-		void                            AttachEntity(Entity* entity);
-		void                            AttachLight(Light* light);
-		void                            DetachEntity(Entity* entity);
-		void                            DetachLight(Light* light);
-		SceneNode*                      CreateNode();
-		SceneNode*                      CreateNode(Vector3f& position, Quaternion& rotation, Vector3f& scale);
-		SceneNode*                      GetParentNode() const;
-		const Vector3f&                 GetGlobalPosition() const;
-		const Vector3f&                 GetPosition() const;
-		const Quaternion&               GetRotation() const;
-		const Vector3f&                 GetScale() const;
-		const Matrix4f&                 GetTransformMatrix() const;
-		void                            SetPosition(const Vector3f& positionVector);
-		void                            SetRotation(const Quaternion& rotationQuaternion);
-		void                            SetScale(const Vector3f& scaleVector);
-		void                            Translate(const Vector3f& translateVector);
-		void                            Yaw(float yawRadians);
-		void                            Pitch(float pitchRadians);
-		void                            Roll(float rollRadians);
-		void                            Rotate(const Quaternion& rotationQuaternion);
-		void                            Scale(const Vector3f& scaleVector);
+		void							AttachEntity(Entity* entity);
+		void							AttachLight(Light* light);
+		void							DetachEntity(Entity* entity);
+		void							DetachLight(Light* light);
+		SceneNode*						CreateNode();
+		SceneNode*						CreateNode(Vector3f& position, Quaternion& rotation, Vector3f& scale);
+		SceneNode*						GetParentNode() const;
+		const Vector3f&					GetGlobalPosition() const;
+		const Vector3f&					GetPosition() const;
+		const Quaternion&				GetRotation() const;
+		const Vector3f&					GetScale() const;
+		const Matrix4f&					GetTransformMatrix() const;
+		void							SetPosition(const Vector3f& positionVector);
+		void							SetRotation(const Quaternion& rotationQuaternion);
+		void							SetScale(const Vector3f& scaleVector);
+		void							Translate(const Vector3f& translateVector);
+		void							Yaw(float yawRadians);
+		void							Pitch(float pitchRadians);
+		void							Roll(float rollRadians);
+		void							Rotate(const Quaternion& rotationQuaternion);
+		void							Scale(const Vector3f& scaleVector);
 	};
 }

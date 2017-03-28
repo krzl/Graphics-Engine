@@ -12,9 +12,9 @@ namespace Kz
 	ShaderDX::ShaderDX(GraphicsDevice& gd, ID3D11Device* device, ID3D11DeviceContext* context,
 		ShaderType type, const std::string& shaderFilePath)
 	{
-		m_context = context;
-		m_device = device;
-		m_type = type;
+		m_context	= context;
+		m_device	= device;
+		m_type		= type;
 
 		ID3DBlob* blob;
 
@@ -26,18 +26,22 @@ namespace Kz
 		switch (type)
 		{
 		case VERT_SHADER:
-			DXCALL_(device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), NULL, (ID3D11VertexShader**)&m_shader));
+			DXCALL_(device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), 
+				NULL, (ID3D11VertexShader**)&m_shader));
 			break;
 		case GEOM_SHADER:
-			DXCALL_(device->CreateGeometryShader(blob->GetBufferPointer(), blob->GetBufferSize(), NULL, (ID3D11GeometryShader**)&m_shader));
+			DXCALL_(device->CreateGeometryShader(blob->GetBufferPointer(), blob->GetBufferSize(), 
+				NULL, (ID3D11GeometryShader**)&m_shader));
 			break;
 		case FRAG_SHADER:
-			DXCALL_(device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), NULL, (ID3D11PixelShader**)&m_shader));
+			DXCALL_(device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(),
+				NULL, (ID3D11PixelShader**)&m_shader));
 			break;
 		}
 
 		ID3D11ShaderReflection* reflection = NULL;
-		DXCALL_(D3DReflect(blob->GetBufferPointer(), blob->GetBufferSize(), IID_ID3D11ShaderReflection, (void**)&reflection));
+		DXCALL_(D3DReflect(blob->GetBufferPointer(), blob->GetBufferSize(), 
+			IID_ID3D11ShaderReflection, (void**)&reflection));
 
 		D3D11_SHADER_DESC desc;
 		reflection->GetDesc(&desc);
@@ -58,9 +62,9 @@ namespace Kz
 			}
 			else
 			{
-				UserBufferInfo* bufferInfo = new UserBufferInfo();
-				bufferInfo->bufferSize = constBufferDesc.Size; 
-				bufferInfo->bufferName = constBufferDesc.Name;
+				UserBufferInfo* bufferInfo	= new UserBufferInfo();
+				bufferInfo->bufferSize		= constBufferDesc.Size; 
+				bufferInfo->bufferName		= constBufferDesc.Name;
 
 				m_userBufferInfos.push_back(bufferInfo);
 

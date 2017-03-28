@@ -1,12 +1,12 @@
 struct PixelIn
 {
-	float4      position : SV_POSITION;
-	float3      texCoord : TEXCOORD;
+	float4		position : SV_POSITION;
+	float3		texCoord : TEXCOORD;
 };
 
 struct PixelOut
 {
-	float4      fragColor : SV_TARGET;
+	float4		fragColor : SV_TARGET;
 };
 
 TextureCube skyboxTexture;

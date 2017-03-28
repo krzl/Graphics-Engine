@@ -36,36 +36,36 @@ namespace Kz
 		}
 
 		DXGI_SWAP_CHAIN_DESC swapChainDesc;
-		swapChainDesc.BufferDesc.Width = 800; //TODO: Get dimensions and refresh rate of monitor
-		swapChainDesc.BufferDesc.Height = 600;
+		swapChainDesc.BufferDesc.Width	= 800; //TODO: Get dimensions and refresh rate of monitor
+		swapChainDesc.BufferDesc.Height	= 600;
 
-		swapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
-		swapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
+		swapChainDesc.BufferDesc.RefreshRate.Numerator		= 60;
+		swapChainDesc.BufferDesc.RefreshRate.Denominator	= 1;
 
-		swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-		swapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-		swapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+		swapChainDesc.BufferDesc.Format				= DXGI_FORMAT_R8G8B8A8_UNORM;
+		swapChainDesc.BufferDesc.Scaling			= DXGI_MODE_SCALING_UNSPECIFIED;
+		swapChainDesc.BufferDesc.ScanlineOrdering	= DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 
 		if (m_msaa > 1)
 		{
 			DXCALL_V(m_device->CheckMultisampleQualityLevels(
 				DXGI_FORMAT_R8G8B8A8_UNORM, m_msaa, &m_msaaQuality));
 
-			swapChainDesc.SampleDesc.Count = m_msaa;
-			swapChainDesc.SampleDesc.Quality = m_msaaQuality - 1;
+			swapChainDesc.SampleDesc.Count		= m_msaa;
+			swapChainDesc.SampleDesc.Quality	= m_msaaQuality - 1;
 		}
 		else
 		{
-			swapChainDesc.SampleDesc.Count = 1;
-			swapChainDesc.SampleDesc.Quality = 0;
+			swapChainDesc.SampleDesc.Count		= 1;
+			swapChainDesc.SampleDesc.Quality	= 0;
 		}
 
-		swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-		swapChainDesc.BufferCount = 1;
-		swapChainDesc.OutputWindow = m_window;
-		swapChainDesc.Windowed = m_isWindowed;
-		swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-		swapChainDesc.Flags = 0;
+		swapChainDesc.BufferUsage	= DXGI_USAGE_RENDER_TARGET_OUTPUT;
+		swapChainDesc.BufferCount	= 1;
+		swapChainDesc.OutputWindow	= m_window;
+		swapChainDesc.Windowed		= m_isWindowed;
+		swapChainDesc.SwapEffect	= DXGI_SWAP_EFFECT_DISCARD;
+		swapChainDesc.Flags			= 0;
 
 		IDXGIDevice* dxgiDevice = 0;
 		DXCALL_V(m_device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice));
@@ -118,12 +118,12 @@ namespace Kz
 	void GraphicsDeviceDX::SetViewport(int x, int y, int width, int height)
 	{
 		D3D11_VIEWPORT viewport;
-		viewport.TopLeftX = (FLOAT)x;
-		viewport.TopLeftY = (FLOAT)y;
-		viewport.Width = static_cast<float>(width);
-		viewport.Height = static_cast<float>(height);
-		viewport.MinDepth = 0.0f;
-		viewport.MaxDepth = 1.0f;
+		viewport.TopLeftX	= (FLOAT)x;
+		viewport.TopLeftY	= (FLOAT)y;
+		viewport.Width		= static_cast<float>(width);
+		viewport.Height		= static_cast<float>(height);
+		viewport.MinDepth	= 0.0f;
+		viewport.MaxDepth	= 1.0f;
 
 		m_context->RSSetViewports(1, &viewport);
 	}
@@ -198,8 +198,6 @@ namespace Kz
 
 	void GraphicsDeviceDX::SetupFinalPass()
 	{
-		//WRITE TO DEPTH ENABLED, DEPTH TEST ENABLED, STENCIL TEST DISABLED
-
 		m_context->OMSetDepthStencilState(m_depthOn, 0);
 		m_context->RSSetState(m_cullFront);
 	}
@@ -223,23 +221,10 @@ namespace Kz
 
 	void GraphicsDeviceDX::SetupPointStencilPass()
 	{
-		//CURRENTLY UNUSED
-		__debugbreak(); //TODO: assertion
-
-		//DEPTH TEST ENABLED, CULLING DISABLED, CLEAR STENCIL, STENCIL FUNCTION ALWAYS, REFERENCE 0, MASK FF
-		//STENCIL OP BACK INCR ON STENCIL PASS AND DEPTH FAIL, ELSE KEEP
-		//STENCIL OP FRONT DECR, SAME AS ABOVE
 	}
 
 	void GraphicsDeviceDX::SetupLightPassPoint()
 	{
-		//CURRENTLY UNUSED
-		__debugbreak(); //TODO: assertion
-
-		//STENCIL FUNC NOTEQUAL REF 0 MASK FF
-		//ENABLE CULLING, DISABLE DEPTH TEST
-		//ENABLE BLENDING, BLEND FUNC ADD, ONE TO ONE
-		//ENABLE CULL FACE, FRONT
 	}
 
 	void GraphicsDeviceDX::SetupLightPass()
@@ -264,9 +249,6 @@ namespace Kz
 
 	void GraphicsDeviceDX::FinalizeLightPassPoint()
 	{
-		// CURRENTLY UNUSED
-		__debugbreak(); //TODO: assertion
-
 		m_context->OMSetBlendState(m_blendOff, NULL, 0xFFFFFFFF);
 	}
 
@@ -280,37 +262,37 @@ namespace Kz
 		D3D11_BLEND_DESC blendDesc = { 0 };
 
 		// m_blendOnSrcToInvSrc
-		blendDesc.AlphaToCoverageEnable = false;
-		blendDesc.IndependentBlendEnable = false;
-		blendDesc.RenderTarget[0].BlendEnable = true;
-		blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-		blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-		blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-		blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
-		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
-		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-		blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		blendDesc.AlphaToCoverageEnable						= false;
+		blendDesc.IndependentBlendEnable					= false;
+		blendDesc.RenderTarget[0].BlendEnable				= true;
+		blendDesc.RenderTarget[0].SrcBlend					= D3D11_BLEND_SRC_ALPHA;
+		blendDesc.RenderTarget[0].DestBlend					= D3D11_BLEND_INV_SRC_ALPHA;
+		blendDesc.RenderTarget[0].BlendOp					= D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].SrcBlendAlpha				= D3D11_BLEND_SRC_ALPHA;
+		blendDesc.RenderTarget[0].DestBlendAlpha			= D3D11_BLEND_INV_SRC_ALPHA;
+		blendDesc.RenderTarget[0].BlendOpAlpha				= D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].RenderTargetWriteMask		= D3D11_COLOR_WRITE_ENABLE_ALL;
 
 		DXCALL_(m_device->CreateBlendState(&blendDesc, &m_blendOnSrcToInvSrc));
 
 		// m_blendOnSrcToSrc
-		blendDesc.AlphaToCoverageEnable = false;
-		blendDesc.IndependentBlendEnable = false;
-		blendDesc.RenderTarget[0].BlendEnable = true;
-		blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
-		blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
-		blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-		blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
-		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-		blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		blendDesc.AlphaToCoverageEnable						= false;
+		blendDesc.IndependentBlendEnable					= false;
+		blendDesc.RenderTarget[0].BlendEnable				= true;
+		blendDesc.RenderTarget[0].SrcBlend					= D3D11_BLEND_ONE;
+		blendDesc.RenderTarget[0].DestBlend					= D3D11_BLEND_ONE;
+		blendDesc.RenderTarget[0].BlendOp					= D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].SrcBlendAlpha				= D3D11_BLEND_ONE;
+		blendDesc.RenderTarget[0].DestBlendAlpha			= D3D11_BLEND_ONE;
+		blendDesc.RenderTarget[0].BlendOpAlpha				= D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].RenderTargetWriteMask		= D3D11_COLOR_WRITE_ENABLE_ALL;
 
 		DXCALL_(m_device->CreateBlendState(&blendDesc, &m_blendOnSrcToSrc));
 
 		// m_blendOff
-		blendDesc.AlphaToCoverageEnable = false;
-		blendDesc.IndependentBlendEnable = false;
-		blendDesc.RenderTarget[0].BlendEnable = false;
+		blendDesc.AlphaToCoverageEnable						= false;
+		blendDesc.IndependentBlendEnable					= false;
+		blendDesc.RenderTarget[0].BlendEnable				= false;
 
 		DXCALL_(m_device->CreateBlendState(&blendDesc, &m_blendOff));
 		
@@ -318,70 +300,70 @@ namespace Kz
 		D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc = { 0 };
 
 		// m_depthOn
-		depthStencilStateDesc.DepthEnable = true;
-		depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-		depthStencilStateDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
-		depthStencilStateDesc.StencilEnable = false;
+		depthStencilStateDesc.DepthEnable					= true;
+		depthStencilStateDesc.DepthWriteMask				= D3D11_DEPTH_WRITE_MASK_ALL;
+		depthStencilStateDesc.DepthFunc						= D3D11_COMPARISON_LESS_EQUAL;
+		depthStencilStateDesc.StencilEnable					= false;
 
 		DXCALL_(m_device->CreateDepthStencilState(&depthStencilStateDesc, &m_depthOn));
 
 		// m_depthOnStencilOnIncrDecr
-		depthStencilStateDesc.DepthEnable = true;
-		depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-		depthStencilStateDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
-		depthStencilStateDesc.StencilEnable = true;
-		depthStencilStateDesc.StencilReadMask = 0xFF;
-		depthStencilStateDesc.StencilWriteMask = 0xFF;
-		depthStencilStateDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
-		depthStencilStateDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
-		depthStencilStateDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
-		depthStencilStateDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+		depthStencilStateDesc.DepthEnable					= true;
+		depthStencilStateDesc.DepthWriteMask				= D3D11_DEPTH_WRITE_MASK_ALL;
+		depthStencilStateDesc.DepthFunc						= D3D11_COMPARISON_LESS_EQUAL;
+		depthStencilStateDesc.StencilEnable					= true;
+		depthStencilStateDesc.StencilReadMask				= 0xFF;
+		depthStencilStateDesc.StencilWriteMask				= 0xFF;
+		depthStencilStateDesc.FrontFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.FrontFace.StencilDepthFailOp	= D3D11_STENCIL_OP_DECR;
+		depthStencilStateDesc.FrontFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.FrontFace.StencilFunc			= D3D11_COMPARISON_ALWAYS;
+		depthStencilStateDesc.BackFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.BackFace.StencilDepthFailOp	= D3D11_STENCIL_OP_INCR;
+		depthStencilStateDesc.BackFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.BackFace.StencilFunc			= D3D11_COMPARISON_ALWAYS;
 
 		DXCALL_(m_device->CreateDepthStencilState(&depthStencilStateDesc, &m_depthOnStencilOnIncrDecr));
 
 		// m_depthOnWriteOff
-		depthStencilStateDesc.DepthEnable = true;
-		depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
-		depthStencilStateDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
-		depthStencilStateDesc.StencilEnable = false;
+		depthStencilStateDesc.DepthEnable					= true;
+		depthStencilStateDesc.DepthWriteMask				= D3D11_DEPTH_WRITE_MASK_ZERO;
+		depthStencilStateDesc.DepthFunc						= D3D11_COMPARISON_LESS_EQUAL;
+		depthStencilStateDesc.StencilEnable					= false;
 
 		DXCALL_(m_device->CreateDepthStencilState(&depthStencilStateDesc, &m_depthOnWriteOff));
 
 		// m_depthOnWriteOffStencilOnIncrDecr
-		depthStencilStateDesc.DepthEnable = true;
-		depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
-		depthStencilStateDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
-		depthStencilStateDesc.StencilEnable = true;
-		depthStencilStateDesc.StencilReadMask = 0xFF;
-		depthStencilStateDesc.StencilWriteMask = 0xFF;
-		depthStencilStateDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
-		depthStencilStateDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
-		depthStencilStateDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
-		depthStencilStateDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+		depthStencilStateDesc.DepthEnable					= true;
+		depthStencilStateDesc.DepthWriteMask				= D3D11_DEPTH_WRITE_MASK_ZERO;
+		depthStencilStateDesc.DepthFunc						= D3D11_COMPARISON_LESS_EQUAL;
+		depthStencilStateDesc.StencilEnable					= true;
+		depthStencilStateDesc.StencilReadMask				= 0xFF;
+		depthStencilStateDesc.StencilWriteMask				= 0xFF;
+		depthStencilStateDesc.FrontFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.FrontFace.StencilDepthFailOp	= D3D11_STENCIL_OP_DECR;
+		depthStencilStateDesc.FrontFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.FrontFace.StencilFunc			= D3D11_COMPARISON_ALWAYS;
+		depthStencilStateDesc.BackFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.BackFace.StencilDepthFailOp	= D3D11_STENCIL_OP_INCR;
+		depthStencilStateDesc.BackFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.BackFace.StencilFunc			= D3D11_COMPARISON_ALWAYS;
 
 		DXCALL_(m_device->CreateDepthStencilState(&depthStencilStateDesc, &m_depthOnWriteOffStencilOnIncrDecr));
 
 		// m_depthOffStencilOnKeep
-		depthStencilStateDesc.DepthEnable = false;
-		depthStencilStateDesc.StencilEnable = true;
-		depthStencilStateDesc.StencilReadMask = 0xFF;
-		depthStencilStateDesc.StencilWriteMask = 0xFF;
-		depthStencilStateDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.FrontFace.StencilFunc = D3D11_COMPARISON_EQUAL;
-		depthStencilStateDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-		depthStencilStateDesc.BackFace.StencilFunc = D3D11_COMPARISON_EQUAL;
+		depthStencilStateDesc.DepthEnable					= false;
+		depthStencilStateDesc.StencilEnable					= true;
+		depthStencilStateDesc.StencilReadMask				= 0xFF;
+		depthStencilStateDesc.StencilWriteMask				= 0xFF;
+		depthStencilStateDesc.FrontFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.FrontFace.StencilDepthFailOp	= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.FrontFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.FrontFace.StencilFunc			= D3D11_COMPARISON_EQUAL;
+		depthStencilStateDesc.BackFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.BackFace.StencilDepthFailOp	= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.BackFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
+		depthStencilStateDesc.BackFace.StencilFunc			= D3D11_COMPARISON_EQUAL;
 
 		DXCALL_(m_device->CreateDepthStencilState(&depthStencilStateDesc, &m_depthOffStencilOnKeep));
 		
@@ -389,46 +371,46 @@ namespace Kz
 		D3D11_RASTERIZER_DESC rasterDesc;
 
 		// m_cullBack
-		rasterDesc.FillMode = D3D11_FILL_SOLID;
-		rasterDesc.CullMode = D3D11_CULL_BACK;
-		rasterDesc.FrontCounterClockwise = true;
-		rasterDesc.DepthClipEnable = true;
-		rasterDesc.AntialiasedLineEnable = false;
-		rasterDesc.MultisampleEnable = false;
-		rasterDesc.ScissorEnable = false;
-		rasterDesc.DepthBias = 0;
-		rasterDesc.DepthBiasClamp = 0;
-		rasterDesc.DepthClipEnable = false;
-		rasterDesc.SlopeScaledDepthBias = 0;
+		rasterDesc.FillMode					= D3D11_FILL_SOLID;
+		rasterDesc.CullMode					= D3D11_CULL_BACK;
+		rasterDesc.FrontCounterClockwise	= true;
+		rasterDesc.DepthClipEnable			= true;
+		rasterDesc.AntialiasedLineEnable	= false;
+		rasterDesc.MultisampleEnable		= false;
+		rasterDesc.ScissorEnable			= false;
+		rasterDesc.DepthBias				= 0;
+		rasterDesc.DepthBiasClamp			= 0;
+		rasterDesc.DepthClipEnable			= false;
+		rasterDesc.SlopeScaledDepthBias		= 0;
 
 		DXCALL_(m_device->CreateRasterizerState(&rasterDesc, &m_cullBack));
 
 		// m_cullFront
-		rasterDesc.FillMode = D3D11_FILL_SOLID;
-		rasterDesc.CullMode = D3D11_CULL_FRONT;
-		rasterDesc.FrontCounterClockwise = true;
-		rasterDesc.DepthClipEnable = true;
-		rasterDesc.AntialiasedLineEnable = false;
-		rasterDesc.MultisampleEnable = false;
-		rasterDesc.ScissorEnable = false;
-		rasterDesc.DepthBias = 0;
-		rasterDesc.DepthBiasClamp = 0;
-		rasterDesc.DepthClipEnable = false;
-		rasterDesc.SlopeScaledDepthBias = 0;
+		rasterDesc.FillMode					= D3D11_FILL_SOLID;
+		rasterDesc.CullMode					= D3D11_CULL_FRONT;
+		rasterDesc.FrontCounterClockwise	= true;
+		rasterDesc.DepthClipEnable			= true;
+		rasterDesc.AntialiasedLineEnable	= false;
+		rasterDesc.MultisampleEnable		= false;
+		rasterDesc.ScissorEnable			= false;
+		rasterDesc.DepthBias				= 0;
+		rasterDesc.DepthBiasClamp			= 0;
+		rasterDesc.DepthClipEnable			= false;
+		rasterDesc.SlopeScaledDepthBias		= 0;
 
 		DXCALL_(m_device->CreateRasterizerState(&rasterDesc, &m_cullFront));
 
 		// m_cullOffDepthClamp
-		rasterDesc.FillMode = D3D11_FILL_SOLID;
-		rasterDesc.CullMode = D3D11_CULL_NONE;
-		rasterDesc.FrontCounterClockwise = true;
-		rasterDesc.DepthClipEnable = false;
-		rasterDesc.AntialiasedLineEnable = false;
-		rasterDesc.MultisampleEnable = false;
-		rasterDesc.ScissorEnable = false;
-		rasterDesc.DepthBias = 1;
-		rasterDesc.DepthBiasClamp = 0;
-		rasterDesc.SlopeScaledDepthBias = 0;
+		rasterDesc.FillMode					= D3D11_FILL_SOLID;
+		rasterDesc.CullMode					= D3D11_CULL_NONE;
+		rasterDesc.FrontCounterClockwise	= true;
+		rasterDesc.DepthClipEnable			= false;
+		rasterDesc.AntialiasedLineEnable	= false;
+		rasterDesc.MultisampleEnable		= false;
+		rasterDesc.ScissorEnable			= false;
+		rasterDesc.DepthBias				= 1;
+		rasterDesc.DepthBiasClamp			= 0;
+		rasterDesc.SlopeScaledDepthBias		= 0;
 
 		DXCALL_(m_device->CreateRasterizerState(&rasterDesc, &m_cullOffDepthClamp));
 	}

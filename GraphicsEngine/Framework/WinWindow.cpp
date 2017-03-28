@@ -100,16 +100,16 @@ namespace Kz
 		Window(width, height, gd)
 	{
 		WNDCLASS wc;
-		wc.style = CS_HREDRAW | CS_VREDRAW;
-		wc.lpfnWndProc = WndProcCB;
-		wc.cbClsExtra = 0;
-		wc.cbWndExtra = 0;
-		wc.hInstance = GetModuleHandle(NULL);
-		wc.hIcon = LoadIcon(0, IDI_APPLICATION);
-		wc.hCursor = LoadCursor(0, IDC_ARROW);
-		wc.hbrBackground = (HBRUSH)GetStockObject(NULL_BRUSH);
-		wc.lpszMenuName = 0;
-		wc.lpszClassName = "WindowClass";
+		wc.style			= CS_HREDRAW | CS_VREDRAW;
+		wc.lpfnWndProc		= WndProcCB;
+		wc.cbClsExtra		= 0;
+		wc.cbWndExtra		= 0;
+		wc.hInstance		= GetModuleHandle(NULL);
+		wc.hIcon			= LoadIcon(0, IDI_APPLICATION);
+		wc.hCursor			= LoadCursor(0, IDC_ARROW);
+		wc.hbrBackground	= (HBRUSH)GetStockObject(NULL_BRUSH);
+		wc.lpszMenuName		= 0;
+		wc.lpszClassName	= "WindowClass";
 
 		RegisterClass(&wc);
 
@@ -176,10 +176,10 @@ namespace Kz
 		}
 		else
 		{
-			m_prevMousePosX = m_width / 2;
-			m_prevMousePosY = m_height / 2;
-			m_mousePosX = m_width / 2;
-			m_mousePosY = m_height / 2;
+			m_prevMousePosX	= m_width / 2;
+			m_prevMousePosY	= m_height / 2;
+			m_mousePosX		= m_width / 2;
+			m_mousePosY		= m_height / 2;
 		}
 
 		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
@@ -227,7 +227,7 @@ namespace Kz
 			SetMousePosition(m_mouseHiddenPosX, m_mouseHiddenPosY);
 			m_updatePosition = true;
 			m_isCursorLocked = true;
-			m_prevMousePosX = m_mousePosX = m_mouseHiddenPosX;
+			m_prevMousePosX	= m_mousePosX = m_mouseHiddenPosX;
 			m_prevMousePosY = m_mousePosY = m_mouseHiddenPosY;
 		}
 	}

@@ -57,6 +57,6 @@ namespace Kz
 		Sphere*							CreateSphere(float x, float y, float z, ShaderProgram& shader);
 		Sphere*							CreateSphere(float x, float y, float z, Material& material);
 
-		void                            Update(double timeElapsed);
+		void							Update(double timeElapsed);
 	};
 }

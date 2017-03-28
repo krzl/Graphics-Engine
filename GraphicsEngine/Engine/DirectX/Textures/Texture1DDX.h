@@ -12,9 +12,9 @@ namespace Kz
 
 	private:
 
-		int                 m_width;
+		int					m_width;
 
-		ID3D11Texture1D*    m_texture;
+		ID3D11Texture1D*	m_texture;
 
 		Texture1DDX(ID3D11Device* device, ID3D11DeviceContext* context, int width,
 			void* data, DataFormat format, int filtering = FILTERING_MAG_LINEAR | FILTERING_MIN_LINEAR,
@@ -25,6 +25,6 @@ namespace Kz
 
 	public:
 
-		virtual Vector4f    GetTextureData(int x);
+		virtual Vector4f	GetTextureData(int x);
 	};
 }

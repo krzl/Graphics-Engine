@@ -8,8 +8,8 @@ class MatrixStack
 {
 private:
 
-	Matrix4f                    currentMatrix;
-	std::stack<Matrix4f>        stack;
+	Matrix4f					currentMatrix;
+	std::stack<Matrix4f>		stack;
 
 public:
 
@@ -17,19 +17,19 @@ public:
 		currentMatrix() 
 	{}
 
-	Matrix4f&                   Top();
-	void                        SetMatrix(Matrix4f& matrix);
-	void                        Concatenate(Matrix4f& matrix);
-	void                        PreConcatenate(Matrix4f& matrix);
-	void                        Push();
-	void                        Pop();
+	Matrix4f&					Top();
+	void						SetMatrix(Matrix4f& matrix);
+	void						Concatenate(Matrix4f& matrix);
+	void						PreConcatenate(Matrix4f& matrix);
+	void						Push();
+	void						Pop();
 };
 
 class PushStack
 {
 private:
 
-	MatrixStack&                matrixStack;
+	MatrixStack&				matrixStack;
 
 public:
 

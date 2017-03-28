@@ -38,8 +38,8 @@ namespace Kz
 
 				if (boneTrack->m_keyFrames.size() == j)
 				{
-					keyFrameTranslation = boneTrack->m_keyFrames[j - 1]->m_translationMatrix;
-					keyFrameRotation = boneTrack->m_keyFrames[j - 1]->m_rotationQuaternion.ToMatrix();
+					keyFrameTranslation	= boneTrack->m_keyFrames[j - 1]->m_translationMatrix;
+					keyFrameRotation	= boneTrack->m_keyFrames[j - 1]->m_rotationQuaternion.ToMatrix();
 				}
 				else if (boneTrack->m_keyFrames.size() != 0)
 				{

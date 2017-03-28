@@ -15,7 +15,6 @@ namespace Kz
 	RenderSystem::RenderSystem(GraphicsDevice* gd) :
 		m_gd(*gd)
 	{
-	
 	}
 
 	void RenderSystem::Init(int width, int height)
@@ -78,10 +77,10 @@ namespace Kz
 
 		m_currentGBuffer = &viewport.GetGBuffer();
 
-		m_frameInfo.pvMatrix   = projectionMatrix * viewMatrix;
-		m_frameInfo.cameraUp   = viewport.m_camera.GetUp();
-		m_frameInfo.cameraPos  = viewport.m_camera.GetPosition();
-		m_frameInfo.screenSize = Vector2f((float)viewport.GetWidth(), (float)viewport.GetHeight());
+		m_frameInfo.pvMatrix	= projectionMatrix * viewMatrix;
+		m_frameInfo.cameraUp	= viewport.m_camera.GetUp();
+		m_frameInfo.cameraPos	= viewport.m_camera.GetPosition();
+		m_frameInfo.screenSize	= Vector2f((float)viewport.GetWidth(), (float)viewport.GetHeight());
 
 		Texture* texture = &m_currentGBuffer->GetTexture(TEXTURE_TYPE_DIFFUSE);
 

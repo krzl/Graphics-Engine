@@ -26,11 +26,11 @@ namespace Kz
 
 	private:
 
-		bool                        m_castingShadow = true;
+		bool						m_castingShadow = true;
 
-		static int                  m_entityIDCounter;
+		static int					m_entityIDCounter;
 
-		Material                    m_material;
+		Material					m_material;
 		AnimationSystem*			m_animationSystem = NULL;
 
 		Entity(Model& model, GraphicsDevice& gd, Material& material);
@@ -40,28 +40,28 @@ namespace Kz
 		Entity(Model& model, GraphicsDevice& gd, ShaderProgram& shaderProgram, 
 			EntityManager& entityManager, Scene& scene);
 
-		void                        Render() const;
+		void						Render() const;
 
 	protected:
 
-		SceneNode*                  m_sceneNode;
+		SceneNode*					m_sceneNode;
 
-		Model&                      m_model;
+		Model&						m_model;
 
-		RenderPerEntityInfo         m_entityInfo;
+		RenderPerEntityInfo			m_entityInfo;
 
-		virtual void                PreRender(RenderSystem& renderSystem);
-		virtual void                PreShadow(RenderSystem& renderSystem);
-		bool                        IsCastingShadow() const;
-		void                        SetNode(SceneNode* sceneNode);
-		const Matrix4f&             GetTransformMatrix() const;
+		virtual void				PreRender(RenderSystem& renderSystem);
+		virtual void				PreShadow(RenderSystem& renderSystem);
+		bool						IsCastingShadow() const;
+		void						SetNode(SceneNode* sceneNode);
+		const Matrix4f&				GetTransformMatrix() const;
 
 	public:
 
 		~Entity();
 
-		void                        SetCastingShadow(bool);
-		AnimationSystem&            GetAnimationSystem();
-		void                        SetShaderVariable(const std::string& variable,void* data, int dataSize);
+		void						SetCastingShadow(bool);
+		AnimationSystem&			GetAnimationSystem();
+		void						SetShaderVariable(const std::string& variable,void* data, int dataSize);
 	};
 }

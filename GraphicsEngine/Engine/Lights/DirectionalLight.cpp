@@ -11,8 +11,8 @@ namespace Kz
 {
 	DirectionalLight::DirectionalLight(Material& material)
 	{
-		m_lightCube = (Entity*)m_entityManager->CreateCube(1.0f, 1.0f, 1.0f, material);
-		m_lightInfo.type = DIRECTIONAL_LIGHT;
+		m_lightCube			= (Entity*)m_entityManager->CreateCube(1.0f, 1.0f, 1.0f, material);
+		m_lightInfo.type	= DIRECTIONAL_LIGHT;
 	}
 
 	const Vector3f& DirectionalLight::GetDirection() const

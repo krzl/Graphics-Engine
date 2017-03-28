@@ -11,8 +11,8 @@ namespace Kz
 {
 	PointLight::PointLight(Material& material)
 	{
-		m_lightCube = (Entity*)m_entityManager->CreateCube(1.0f, 1.0f, 1.0f, material);
-		m_lightInfo.type = POINT_LIGHT;
+		m_lightCube			= (Entity*)m_entityManager->CreateCube(1.0f, 1.0f, 1.0f, material);
+		m_lightInfo.type	= POINT_LIGHT;
 	}
 
 	const Vector3f& PointLight::GetAttenuation() const
@@ -52,16 +52,6 @@ namespace Kz
 
 	void PointLight::LightPass(RenderSystem& renderSystem)
 	{
-		/*Renderer::GetInstance().SetLight(this);
-		Renderer::GetInstance().SetLightScale(scaleMatrix);
-		Renderer::GetInstance().SetupPointStencilPass();
-		lightSphere->LightRender();
-		Renderer::GetInstance().UsePointLightPassTechnique();
-		Renderer::GetInstance().SetupLightPassPoint();
-		lightSphere->LightRender();
-		Renderer::GetInstance().FinalizeLightPassPoint();
-		renderSystem.m_techniqueManager.SetLightScale(Matrix4f::ScaleMatrix(Vector3f(1.0f, 1.0f, 1.0f)));*/
-		
 		SetLightPosition(renderSystem);
 		renderSystem.m_shaderManager.SetBuffer(BUFFER_PER_LIGHT, 
 			(void*)&m_lightInfo, sizeof(RenderPerLightInfo));

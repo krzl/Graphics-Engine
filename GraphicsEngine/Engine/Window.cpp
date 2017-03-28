@@ -8,11 +8,11 @@ namespace Kz
 	Window::Window(int width, int height, GraphicsDevice& gd) :
 		m_gd(gd)
 	{
-		m_width = width;
-		m_height = height;
+		m_width		= width;
+		m_height	= height;
 
-		m_shouldClose = false;
-		m_isVisible = true;
+		m_shouldClose	= false;
+		m_isVisible		= true;
 
 		m_keys.resize(MAX_KEY);
 
@@ -76,8 +76,8 @@ namespace Kz
 
 	void Window::OnResize(int width, int height)
 	{
-		m_width = width;
-		m_height = height;
+		m_width		= width;
+		m_height	= height;
 
 		for (Viewport* viewport : m_viewports)
 		{

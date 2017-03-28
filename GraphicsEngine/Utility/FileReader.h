@@ -8,17 +8,17 @@ namespace Kz
 	{
 	private:
 
-		std::ifstream       m_file;
-		bool                m_isFailed;
+		std::ifstream		m_file;
+		bool				m_isFailed;
 
 	public:
 
 		FileReader(const std::string& filePath);
 		~FileReader();
 
-		std::string         GetData();
-		std::string         GetLine();
-		bool                IsFinishedReading();
-		bool                IsFailed();
+		std::string			GetData();
+		std::string			GetLine();
+		bool				IsFinishedReading();
+		bool				IsFailed();
 	};
 }

@@ -60,34 +60,40 @@ namespace Kz
 				if (stringSplitted[0] == "byte")
 				{
 					char* value = new char(std::stoi(stringSplitted[2]));
-					m_materialVariables[stringSplitted[1]] = MaterialVariable(value, sizeof(char), VARTYPE_BYTE);
+					m_materialVariables[stringSplitted[1]] 
+						= MaterialVariable(value, sizeof(char), VARTYPE_BYTE);
 				}
 				else if (stringSplitted[0] == "int")
 				{
 					int* value = new int(std::stoi(stringSplitted[2]));
-					m_materialVariables[stringSplitted[1]] = MaterialVariable(value, sizeof(int), VARTYPE_INT);
+					m_materialVariables[stringSplitted[1]] 
+						= MaterialVariable(value, sizeof(int), VARTYPE_INT);
 				}
 				else if (stringSplitted[0] == "float")
 				{
 					float* value = new float(std::stof(stringSplitted[2]));
-					m_materialVariables[stringSplitted[1]] = MaterialVariable(value, sizeof(float), VARTYPE_FLOAT);
+					m_materialVariables[stringSplitted[1]] 
+						= MaterialVariable(value, sizeof(float), VARTYPE_FLOAT);
 				}
 				else if (stringSplitted[0] == "vec2")
 				{
 					Vector2f* value = new Vector2f(std::stof(stringSplitted[2]), std::stof(stringSplitted[3]));
-					m_materialVariables[stringSplitted[1]] = MaterialVariable(value, sizeof(Vector2f), VARTYPE_VECTOR2);
+					m_materialVariables[stringSplitted[1]] 
+						= MaterialVariable(value, sizeof(Vector2f), VARTYPE_VECTOR2);
 				}
 				else if (stringSplitted[0] == "vec3")
 				{
 					Vector3f* value = new Vector3f(std::stof(stringSplitted[2]),
 						std::stof(stringSplitted[3]), std::stof(stringSplitted[4]));
-					m_materialVariables[stringSplitted[1]] = MaterialVariable(value, sizeof(Vector3f), VARTYPE_VECTOR3);
+					m_materialVariables[stringSplitted[1]] 
+						= MaterialVariable(value, sizeof(Vector3f), VARTYPE_VECTOR3);
 				}
 				else if (stringSplitted[0] == "vec4")
 				{
 					Vector4f* value = new Vector4f(std::stof(stringSplitted[2]), std::stof(stringSplitted[3]),
 						std::stof(stringSplitted[4]), std::stof(stringSplitted[5]));
-					m_materialVariables[stringSplitted[1]] = MaterialVariable(value, sizeof(Vector4f), VARTYPE_VECTOR4);
+					m_materialVariables[stringSplitted[1]] 
+						= MaterialVariable(value, sizeof(Vector4f), VARTYPE_VECTOR4);
 				}
 				else if (stringSplitted[0] == "tex")
 				{
@@ -103,7 +109,8 @@ namespace Kz
 
 					std::string textureFilapath = m_meshFilepath.substr(0, last) + "\\" + stringSplitted[2];
 					Texture2D* texture = textureCreator.CreateTexture2D(textureFilapath);
-					m_materialVariables[stringSplitted[1]] = MaterialVariable(reinterpret_cast<void*>(texture), 0, VARTYPE_TEXTURE);
+					m_materialVariables[stringSplitted[1]] 
+						= MaterialVariable(reinterpret_cast<void*>(texture), 0, VARTYPE_TEXTURE);
 				}
 			}
 
@@ -133,15 +140,22 @@ namespace Kz
 		std::set<Vector3f> vertexSet;
 		std::vector<int> vertexUnique;
 
-		for (rapidxml::xml_node<>* vertexBufferNode = sharedgeometryNode->first_node(); vertexBufferNode; vertexBufferNode = vertexBufferNode->next_sibling())
+		for (rapidxml::xml_node<>* vertexBufferNode = sharedgeometryNode->first_node(); 
+			vertexBufferNode; vertexBufferNode = vertexBufferNode->next_sibling())
 		{
-			bool position = vertexBufferNode->first_attribute("positions") && std::string(vertexBufferNode->first_attribute("positions")->value()) == "true";
-			bool normal = vertexBufferNode->first_attribute("normals") && std::string(vertexBufferNode->first_attribute("normals")->value()) == "true";
-			bool texcoord = vertexBufferNode->first_attribute("texture_coords") && std::string(vertexBufferNode->first_attribute("texture_coords")->value()) == "1";
+			bool position = vertexBufferNode->first_attribute("positions") && 
+				std::string(vertexBufferNode->first_attribute("positions")->value()) == "true";
+
+			bool normal = vertexBufferNode->first_attribute("normals") && 
+				std::string(vertexBufferNode->first_attribute("normals")->value()) == "true";
+
+			bool texcoord = vertexBufferNode->first_attribute("texture_coords") && 
+				std::string(vertexBufferNode->first_attribute("texture_coords")->value()) == "1";
 
 			int i = 0;
 
-			for (rapidxml::xml_node<>* vertexNode = vertexBufferNode->first_node(); vertexNode; vertexNode = vertexNode->next_sibling())
+			for (rapidxml::xml_node<>* vertexNode = vertexBufferNode->first_node(); 
+				vertexNode; vertexNode = vertexNode->next_sibling())
 			{
 				if (position)
 				{
@@ -195,7 +209,8 @@ namespace Kz
 
 		rapidxml::xml_node<>* submeshesNode = meshNode->first_node("submeshes");
 
-		for (rapidxml::xml_node<>* submeshNode = submeshesNode->first_node(); submeshNode; submeshNode = submeshNode->next_sibling())
+		for (rapidxml::xml_node<>* submeshNode = submeshesNode->first_node(); 
+			submeshNode; submeshNode = submeshNode->next_sibling())
 		{
 			rapidxml::xml_node<>* facesNode = submeshNode->first_node("faces");
 
@@ -207,7 +222,8 @@ namespace Kz
 
 			int i = 0;
 
-			for (rapidxml::xml_node<>* faceNode = facesNode->first_node(); faceNode; faceNode = faceNode->next_sibling())
+			for (rapidxml::xml_node<>* faceNode = facesNode->first_node(); 
+				faceNode; faceNode = faceNode->next_sibling())
 			{
 				unsigned int v1 = std::stoi(faceNode->first_attribute("v1")->value());
 				unsigned int v2 = std::stoi(faceNode->first_attribute("v2")->value());
@@ -224,9 +240,12 @@ namespace Kz
 				int uniqueVertexB = vertexUnique[v2];
 				int uniqueVertexC = vertexUnique[v3];
 
-				std::pair<std::map<Edge, int>::iterator, bool> insertRetA = edgeMap.emplace(std::pair<Edge, int>(Edge(uniqueVertexA, uniqueVertexB), i * 6 + 1));
-				std::pair<std::map<Edge, int>::iterator, bool> insertRetB = edgeMap.emplace(std::pair<Edge, int>(Edge(uniqueVertexB, uniqueVertexC), i * 6 + 3));
-				std::pair<std::map<Edge, int>::iterator, bool> insertRetC = edgeMap.emplace(std::pair<Edge, int>(Edge(uniqueVertexC, uniqueVertexA), i * 6 + 5));
+				std::pair<std::map<Edge, int>::iterator, bool> insertRetA 
+					= edgeMap.emplace(std::pair<Edge, int>(Edge(uniqueVertexA, uniqueVertexB), i * 6 + 1));
+				std::pair<std::map<Edge, int>::iterator, bool> insertRetB 
+					= edgeMap.emplace(std::pair<Edge, int>(Edge(uniqueVertexB, uniqueVertexC), i * 6 + 3));
+				std::pair<std::map<Edge, int>::iterator, bool> insertRetC 
+					= edgeMap.emplace(std::pair<Edge, int>(Edge(uniqueVertexC, uniqueVertexA), i * 6 + 5));
 
 				if (!insertRetA.second)
 				{
@@ -250,7 +269,8 @@ namespace Kz
 				i++;
 			}
 
-			indexBuffer = gd.CreateBuffer(BUFFER_TYPE_INDEX, sizeof(int) * 6 * facesCount, indexData, BUFFER_UPDATE_STATIC, facesCount * 6);
+			indexBuffer = gd.CreateBuffer(BUFFER_TYPE_INDEX, sizeof(int) * 6 * facesCount, 
+				indexData, BUFFER_UPDATE_STATIC, facesCount * 6);
 
 			delete[] indexData;
 		}
@@ -263,7 +283,8 @@ namespace Kz
 			int* boneAssignmentCount = new int[vertexCount];
 			memset(boneAssignmentCount, 0, sizeof(int) * vertexCount);
 
-			for (rapidxml::xml_node<>* boneAssignmentNode = boneAssignmentsNode->first_node(); boneAssignmentNode; boneAssignmentNode = boneAssignmentNode->next_sibling())
+			for (rapidxml::xml_node<>* boneAssignmentNode = boneAssignmentsNode->first_node(); 
+				boneAssignmentNode; boneAssignmentNode = boneAssignmentNode->next_sibling())
 			{
 				int boneIndex = std::stoi(boneAssignmentNode->first_attribute("boneindex")->value());
 				int vertexIndex = std::stoi(boneAssignmentNode->first_attribute("vertexindex")->value());
@@ -295,7 +316,8 @@ namespace Kz
 				rapidxml::xml_node<>* skeletonNode = skeletonXML.first_node();
 				rapidxml::xml_node<>* bonesNode = skeletonNode->first_node("bones");
 
-				for (rapidxml::xml_node<>* boneNode = bonesNode->first_node(); boneNode; boneNode = boneNode->next_sibling())
+				for (rapidxml::xml_node<>* boneNode = bonesNode->first_node(); 
+					boneNode; boneNode = boneNode->next_sibling())
 				{
 					std::string boneName = boneNode->first_attribute("name")->value();
 
@@ -349,7 +371,8 @@ namespace Kz
 
 				rapidxml::xml_node<>* bonehierarchyNode = skeletonNode->first_node("bonehierarchy");
 
-				for (rapidxml::xml_node<>* boneparentNode = bonehierarchyNode->first_node(); boneparentNode; boneparentNode = boneparentNode->next_sibling())
+				for (rapidxml::xml_node<>* boneparentNode = bonehierarchyNode->first_node(); 
+					boneparentNode; boneparentNode = boneparentNode->next_sibling())
 				{
 					std::string childName = boneparentNode->first_attribute("bone")->value();
 					std::string parentName = boneparentNode->first_attribute("parent")->value();
@@ -384,7 +407,8 @@ namespace Kz
 			}
 		}
 
-		vertexBuffer = gd.CreateBuffer(BUFFER_TYPE_VERTEX, sizeof(float) * 16 * vertexCount, vertexData, BUFFER_UPDATE_STATIC, vertexCount);
+		vertexBuffer = gd.CreateBuffer(BUFFER_TYPE_VERTEX, sizeof(float) * 16 * vertexCount, 
+			vertexData, BUFFER_UPDATE_STATIC, vertexCount);
 		m_mesh = gd.CreateMesh(*vertexBuffer, *indexBuffer);
 
 		delete[] vertexData;
@@ -411,7 +435,8 @@ namespace Kz
 			pos = m_meshFilepath.find("\\", pos + 1);
 		}
 
-		std::string animationFilename = m_meshFilepath.substr(0, last) + "\\" + animationName + ".skeleton.xml";
+		std::string animationFilename 
+			= m_meshFilepath.substr(0, last) + "\\" + animationName + ".skeleton.xml";
 
 		std::map<std::string, Animation_t*>::iterator it = m_animations.find(animationFilename);
 		if (it == m_animations.end())
@@ -432,7 +457,8 @@ namespace Kz
 
 			Animation_t* animation = new Animation_t;
 
-			for (rapidxml::xml_node<>* boneNode = bonesNode->first_node(); boneNode; boneNode = boneNode->next_sibling())
+			for (rapidxml::xml_node<>* boneNode = bonesNode->first_node(); 
+				boneNode; boneNode = boneNode->next_sibling())
 			{
 				BoneKeyFrames_t* boneKeyFrames = new BoneKeyFrames_t;
 
@@ -481,7 +507,8 @@ namespace Kz
 
 			m_animations[animationNode->first_attribute("name")->value()] = animation;
 
-			for (rapidxml::xml_node<>* trackNode = tracksNode->first_node(); trackNode; trackNode = trackNode->next_sibling())
+			for (rapidxml::xml_node<>* trackNode = tracksNode->first_node(); 
+				trackNode; trackNode = trackNode->next_sibling())
 			{
 				rapidxml::xml_node<>* keyframesNode = trackNode->first_node("keyframes");
 
@@ -489,7 +516,8 @@ namespace Kz
 
 				BoneKeyFrames_t* boneKeyframe = animation->m_boneTracks[bone.m_id];
 
-				for (rapidxml::xml_node<>* keyframeNode = keyframesNode->first_node(); keyframeNode; keyframeNode = keyframeNode->next_sibling())
+				for (rapidxml::xml_node<>* keyframeNode = keyframesNode->first_node(); 
+					keyframeNode; keyframeNode = keyframeNode->next_sibling())
 				{
 					rapidxml::xml_node<>* positionNode = keyframeNode->first_node("translate");
 					rapidxml::xml_node<>* rotationNode = keyframeNode->first_node("rotate");

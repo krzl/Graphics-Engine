@@ -9,8 +9,8 @@ namespace Kz
 		std::vector<Shader*>& shaders, ShaderManager& srManager) :
 		ShaderProgram(shaders)
 	{
-		m_device = device;
-		m_context = context;
+		m_device	= device;
+		m_context	= context;
 	}
 
 	void ShaderProgramDX::Enable(ShaderManager& srManager, Material& material)

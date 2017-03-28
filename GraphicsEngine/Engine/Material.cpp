@@ -71,7 +71,7 @@ namespace Kz
 			}
 		}
 
-		__debugbreak(); //TODO: assertion
+		__debugbreak();
 
 		return *m_shadersVariables[0];
 	}

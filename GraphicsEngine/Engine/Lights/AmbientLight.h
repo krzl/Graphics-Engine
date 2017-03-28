@@ -13,16 +13,16 @@ namespace Kz
 
 	private:
 
-		Entity*             m_lightCube;
+		Entity*				m_lightCube;
 
 		AmbientLight(Material& material);
 
-		virtual void        LightPass(RenderSystem& renderSystem);
+		virtual void		LightPass(RenderSystem& renderSystem);
 
 	public:
 
-		void                Init();
-		const Vector4f&     GetAmbient() const;
-		void                SetAmbient(const Vector4f& ambientColor);
+		void				Init();
+		const Vector4f&		GetAmbient() const;
+		void				SetAmbient(const Vector4f& ambientColor);
 	};
 }

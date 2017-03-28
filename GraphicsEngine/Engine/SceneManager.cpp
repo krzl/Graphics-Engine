@@ -16,9 +16,9 @@ namespace Kz
 		Logger::VSOutputEditLogTypes(LOG_TYPE_ALL);
 
 		m_gd = GraphicsDevice::CreateGraphicsDevice(DIRECTX);
-		m_textureCreator = new TextureCreator(*m_gd);
-		m_renderSystem = new RenderSystem(m_gd);
-		m_shaderManager = &m_renderSystem->m_shaderManager;
+		m_textureCreator	= new TextureCreator(*m_gd);
+		m_renderSystem		= new RenderSystem(m_gd);
+		m_shaderManager		= &m_renderSystem->m_shaderManager;
 
 		m_scene = new Scene(*m_renderSystem, *m_shaderManager);
 		m_renderSystem->SetScene(m_scene);

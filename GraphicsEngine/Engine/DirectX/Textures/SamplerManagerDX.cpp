@@ -75,15 +75,15 @@ namespace Kz
 			desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 		}
 
-		desc.MipLODBias = 0.0f;
-		desc.MaxAnisotropy = 1;
-		desc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+		desc.MipLODBias		= 0.0f;
+		desc.MaxAnisotropy	= 1;
+		desc.ComparisonFunc	= D3D11_COMPARISON_ALWAYS;
 		desc.BorderColor[0] = 0;
 		desc.BorderColor[1] = 0;
 		desc.BorderColor[2] = 0;
 		desc.BorderColor[3] = 0;
-		desc.MinLOD = 0;
-		desc.MaxLOD = D3D11_FLOAT32_MAX;
+		desc.MinLOD			= 0;
+		desc.MaxLOD			= D3D11_FLOAT32_MAX;
 
 		ID3D11SamplerState* sampler;
 		SamplerInfo samplerInfo;

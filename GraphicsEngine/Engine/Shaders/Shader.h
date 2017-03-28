@@ -5,7 +5,6 @@
 
 namespace Kz
 {
-
 	enum ShaderType
 	{
 		VERT_SHADER,
@@ -24,16 +23,16 @@ namespace Kz
 
 	protected:
 
-		ShaderType                      m_type;
+		ShaderType						m_type;
 
-		std::map<std::string, int>      m_predefBuffers;
-		std::vector<UserBufferInfo*>    m_userBufferInfos;
-		std::map<std::string, int>      m_textures;
+		std::map<std::string, int>		m_predefBuffers;
+		std::vector<UserBufferInfo*>	m_userBufferInfos;
+		std::map<std::string, int>		m_textures;
 
 		Shader() {}
 
 	public:
 
-		static bool                     IsPredefinedBuffer(const std::string& name);
+		static bool						IsPredefinedBuffer(const std::string& name);
 	};
 }

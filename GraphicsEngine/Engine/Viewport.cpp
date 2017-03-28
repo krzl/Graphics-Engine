@@ -18,7 +18,7 @@ namespace Kz
 
 	float Viewport::GetAspectRatio() const
 	{
-		float width = (float)GetWidth();
+		float width	= (float)GetWidth();
 		float height = (float)GetHeight();
 		return width / height;
 	}

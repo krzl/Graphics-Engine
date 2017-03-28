@@ -8,10 +8,10 @@ namespace Kz
 	{
 	private:
 
-		Vector3f                    m_position;
-		Vector3f                    m_lookAtPoint;
-		float                       m_yaw;
-		float                       m_pitch;
+		Vector3f					m_position;
+		Vector3f					m_lookAtPoint;
+		float						m_yaw;
+		float						m_pitch;
 
 	public:
 
@@ -29,13 +29,13 @@ namespace Kz
 			m_lookAtPoint(lookAtPoint)
 		{}
 
-		Matrix4f                    GetLookAtMatrix() const;
-		Vector3f                    GetPosition() const;
-		Vector3f                    GetUp() const;
-		Vector3f                    GetLookAt() const;
-		void                        SetPosition(const Vector3f& cameraPosition);
-		void                        SetLookAt(const Vector3f& lookAt);
-		void                        Translate(const Vector3f& translationVector);
-		void                        MoveCamera(float yaw, float pitch);
+		Matrix4f					GetLookAtMatrix() const;
+		Vector3f					GetPosition() const;
+		Vector3f					GetUp() const;
+		Vector3f					GetLookAt() const;
+		void						SetPosition(const Vector3f& cameraPosition);
+		void						SetLookAt(const Vector3f& lookAt);
+		void						Translate(const Vector3f& translationVector);
+		void						MoveCamera(float yaw, float pitch);
 	};
 }

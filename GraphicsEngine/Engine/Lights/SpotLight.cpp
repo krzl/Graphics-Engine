@@ -12,8 +12,8 @@ namespace Kz
 {
 	SpotLight::SpotLight(Material& material)
 	{
-		m_lightCube = (Entity*)m_entityManager->CreateCube(1.0f, 1.0f, 1.0f, material);
-		m_lightInfo.type = SPOT_LIGHT;
+		m_lightCube			= (Entity*)m_entityManager->CreateCube(1.0f, 1.0f, 1.0f, material);
+		m_lightInfo.type	= SPOT_LIGHT;
 	}
 
 	const Vector3f& SpotLight::GetAttenuation() const

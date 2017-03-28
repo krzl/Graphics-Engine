@@ -18,19 +18,19 @@ namespace Kz
 	{
 	private:
 
-		bool                        m_isRunning = false;
+		bool						m_isRunning = false;
 
-		void                        Run();
-		void                        Update(double timeElapsed);
+		void						Run();
+		void						Update(double timeElapsed);
 
 	protected:
 
-		WinWindow*                  m_mainWindow;
-		SceneManager                m_sceneManager;
+		WinWindow*					m_mainWindow;
+		SceneManager				m_sceneManager;
 
-		virtual void                OnUpdate() = 0;
-		virtual void                OnExit() = 0;
-		virtual void                OnInit() = 0;
+		virtual void				OnUpdate() = 0;
+		virtual void				OnExit() = 0;
+		virtual void				OnInit() = 0;
 
 	public:
 
@@ -38,7 +38,7 @@ namespace Kz
 		KeyboardInputHandler		m_keyboardInputHandler;
 
 		void						Init(int width, int height, std::string windowTitle);
-		void                        Start();
-		void                        Exit();
+		void						Start();
+		void						Exit();
 	};
 }

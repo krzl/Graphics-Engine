@@ -69,9 +69,9 @@ namespace Kz
 
 	struct MaterialVariable
 	{
-		void*                   data;
-		int                     dataSize;
-		MaterialVariableType    type;
+		void*					data;
+		int						dataSize;
+		MaterialVariableType	type;
 
 		MaterialVariable() :
 			data(NULL),

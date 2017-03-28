@@ -104,7 +104,8 @@ namespace Kz
 
 	Cube* EntityManager::CreateCube(float size, Material& material)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Cube\\Cube.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Cube\\Cube.mesh.xml");
 		Cube* cube = NULL;
 
 		if (it == m_models.end())
@@ -124,7 +125,8 @@ namespace Kz
 
 	Cube* EntityManager::CreateCube(float x, float y, float z, ShaderProgram& shader)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Cube\\Cube.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Cube\\Cube.mesh.xml");
 		Cube* cube = NULL;
 
 		if (it == m_models.end())
@@ -144,7 +146,8 @@ namespace Kz
 
 	Cube* EntityManager::CreateCube(float x, float y, float z, Material& material)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Cube\\Cube.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Cube\\Cube.mesh.xml");
 		Cube* cube = NULL;
 
 		if (it == m_models.end())
@@ -164,7 +167,8 @@ namespace Kz
 
 	Plane* EntityManager::CreatePlane(float size, ShaderProgram& shader)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Plane\\Plane.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Plane\\Plane.mesh.xml");
 		Plane* plane = NULL;
 
 		if (it == m_models.end())
@@ -184,7 +188,8 @@ namespace Kz
 
 	Plane* EntityManager::CreatePlane(float size, Material& material)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Plane\\Plane.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Plane\\Plane.mesh.xml");
 		Plane* plane = NULL;
 
 		if (it == m_models.end())
@@ -204,7 +209,8 @@ namespace Kz
 
 	Plane* EntityManager::CreatePlane(float x, float z, ShaderProgram& shader)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Plane\\Plane.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Plane\\Plane.mesh.xml");
 		Plane* plane = NULL;
 
 		if (it == m_models.end())
@@ -224,7 +230,8 @@ namespace Kz
 
 	Plane* EntityManager::CreatePlane(float x, float z, Material& material)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Plane\\Plane.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Plane\\Plane.mesh.xml");
 		Plane* plane = NULL;
 
 		if (it == m_models.end())
@@ -244,7 +251,8 @@ namespace Kz
 
 	Sphere* EntityManager::CreateSphere(float size, ShaderProgram& shader)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Sphere\\Sphere.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Sphere\\Sphere.mesh.xml");
 		Sphere* sphere = NULL;
 
 		if (it == m_models.end())
@@ -264,7 +272,8 @@ namespace Kz
 
 	Sphere* EntityManager::CreateSphere(float size, Material& material)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Sphere\\Sphere.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Sphere\\Sphere.mesh.xml");
 		Sphere* sphere = NULL;
 
 		if (it == m_models.end())
@@ -284,7 +293,8 @@ namespace Kz
 
 	Sphere* EntityManager::CreateSphere(float x, float y, float z, ShaderProgram& shader)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Sphere\\Sphere.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Sphere\\Sphere.mesh.xml");
 		Sphere* sphere = NULL;
 
 		if (it == m_models.end())
@@ -304,7 +314,8 @@ namespace Kz
 
 	Sphere* EntityManager::CreateSphere(float x, float y, float z, Material& material)
 	{
-		std::map<std::string, Model*>::iterator it = m_models.find("..\\Models\\Primitives\\Sphere\\Sphere.mesh.xml");
+		std::map<std::string, Model*>::iterator it 
+			= m_models.find("..\\Models\\Primitives\\Sphere\\Sphere.mesh.xml");
 		Sphere* sphere = NULL;
 
 		if (it == m_models.end())
@@ -324,7 +335,9 @@ namespace Kz
 
 	void EntityManager::Update(double timeElapsed)
 	{
-		for (std::vector<AnimationSystem*>::iterator it = m_animationSystems.begin(); it != m_animationSystems.end();){
+		for (std::vector<AnimationSystem*>::iterator it = m_animationSystems.begin(); 
+			it != m_animationSystems.end();)
+		{
 			(**it).Update((float) timeElapsed);
 			it++;
 		}
@@ -332,7 +345,8 @@ namespace Kz
 
 	void EntityManager::RemoveAnimatedEntity(AnimationSystem* animationSystem)
 	{
-		std::vector<AnimationSystem*>::iterator it = std::find(m_animationSystems.begin(), m_animationSystems.end(), animationSystem);
+		std::vector<AnimationSystem*>::iterator it = std::find(m_animationSystems.begin(), 
+			m_animationSystems.end(), animationSystem);
 		if (it != m_animationSystems.end())
 		{
 			m_animationSystems.erase(it);

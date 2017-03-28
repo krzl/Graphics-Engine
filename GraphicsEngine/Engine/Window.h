@@ -37,44 +37,44 @@ namespace Kz
 		int								m_height;
 		bool							m_isVisible;
 		bool							m_shouldClose;
-		GraphicsDevice&                 m_gd;
+		GraphicsDevice&					m_gd;
 
-		bool                            m_isCursorLocked = true;
+		bool							m_isCursorLocked = true;
 		int								m_prevMousePosX;
-		int                             m_prevMousePosY;
+		int								m_prevMousePosY;
 		int								m_mousePosX;
-		int 							m_mousePosY;
+		int								m_mousePosY;
 
-		std::vector<Viewport*>          m_viewports;
+		std::vector<Viewport*>			m_viewports;
 
 		std::vector<KeyState>			m_keys;
-		std::vector<KeyState>           m_mouseButtons;
+		std::vector<KeyState>			m_mouseButtons;
 
 	public:
 
 		Window(int width, int height, GraphicsDevice& gd);
 
-		Viewport&                       CreateViewport(float x, float y, float width, float height);
-		Viewport&                       CreateViewport();
-		void                            RemoveViewport(Viewport& viewport);
-		void                            OnResize(int windowWidth, int windowHeight);
-		bool                            IsClosed() const;
-		bool                            IsVisible() const;
-		float                           GetAspectRatio() const;
-		int                             GetHeight() const;
-		int                             GetWidth() const;
+		Viewport&						CreateViewport(float x, float y, float width, float height);
+		Viewport&						CreateViewport();
+		void							RemoveViewport(Viewport& viewport);
+		void							OnResize(int windowWidth, int windowHeight);
+		bool							IsClosed() const;
+		bool							IsVisible() const;
+		float							GetAspectRatio() const;
+		int								GetHeight() const;
+		int								GetWidth() const;
 
-		virtual void                    Close() = 0;
+		virtual void					Close() = 0;
 		KeyState						GetKeyState(int key) const;
 		KeyState						GetButtonState(MouseButton button) const;
-		bool                            IsMouseLocked() const;
-		virtual void                    GetMousePosition(int& xPos, int& yPos) const;
-		virtual void                    GetMousePositionDiff(int& dx, int& dy) const;
-		virtual void                    MakeCurrent() const = 0;
-		virtual void                    SwapBuffers() = 0;
-		virtual void                    LockMouse() = 0;
-		virtual void                    UnlockMouse() = 0;
-		virtual void                    Update(RenderSystem& renderSystem);
+		bool							IsMouseLocked() const;
+		virtual void					GetMousePosition(int& xPos, int& yPos) const;
+		virtual void					GetMousePositionDiff(int& dx, int& dy) const;
+		virtual void					MakeCurrent() const = 0;
+		virtual void					SwapBuffers() = 0;
+		virtual void					LockMouse() = 0;
+		virtual void					UnlockMouse() = 0;
+		virtual void					Update(RenderSystem& renderSystem);
 	};
 }
 

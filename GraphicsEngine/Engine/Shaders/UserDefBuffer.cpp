@@ -9,7 +9,7 @@ namespace Kz
 	{
 		m_bufferData	= ::operator new (bufferInfo.bufferSize);
 		m_buffer		= gd.CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, 
-							bufferInfo.bufferSize, NULL, BUFFER_UPDATE_DYNAMIC);
+			bufferInfo.bufferSize, NULL, BUFFER_UPDATE_DYNAMIC);
 	}
 
 	Buffer& UserDefBuffer::GetBuffer()

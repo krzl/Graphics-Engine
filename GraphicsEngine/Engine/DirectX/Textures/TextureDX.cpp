@@ -7,9 +7,9 @@ namespace Kz
 	TextureDX::TextureDX(ID3D11Device* device, ID3D11DeviceContext* context, 
 		int filtering, int wrap)
 	{
-		m_sampler = SamplerManager::GetSampler(device, context, filtering, wrap);
-		m_context = context;
-		m_device = device;
+		m_sampler	= SamplerManager::GetSampler(device, context, filtering, wrap);
+		m_context	= context;
+		m_device	= device;
 	}
 
 	DXGI_FORMAT TextureDX::GetFormat(DataFormat format)

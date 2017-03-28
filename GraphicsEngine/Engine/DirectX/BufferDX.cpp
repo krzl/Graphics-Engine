@@ -6,8 +6,8 @@ namespace Kz
 	BufferDX::BufferDX(ID3D11Device* device, ID3D11DeviceContext* context, BufferType type,
 		BufferUpdateFrequency updateFrequency, void* data, int dataSize, int count)
 	{
-		m_device = device;
-		m_context = context;
+		m_device	= device;
+		m_context	= context;
 		int cpuAccessFlag = 0;
 
 		switch (type)
@@ -28,7 +28,7 @@ namespace Kz
 		switch (updateFrequency)
 		{
 		case BUFFER_UPDATE_DYNAMIC:
-			m_usage = D3D11_USAGE_DYNAMIC;
+			m_usage	= D3D11_USAGE_DYNAMIC;
 			cpuAccessFlag = D3D11_CPU_ACCESS_WRITE;
 			break;
 		case BUFFER_UPDATE_STATIC:
@@ -38,16 +38,16 @@ namespace Kz
 			__debugbreak();
 		}
 
-		m_count = count;
-		m_stride = dataSize / count;
-		m_offset = 0;
+		m_count		= count;
+		m_stride	= dataSize / count;
+		m_offset	= 0;
 
 		D3D11_BUFFER_DESC bufferDesc;
-		bufferDesc.Usage = m_usage;
-		bufferDesc.ByteWidth = dataSize;
-		bufferDesc.BindFlags = m_bufferType;
-		bufferDesc.CPUAccessFlags = cpuAccessFlag;
-		bufferDesc.MiscFlags = 0;
+		bufferDesc.Usage			= m_usage;
+		bufferDesc.ByteWidth		= dataSize;
+		bufferDesc.BindFlags		= m_bufferType;
+		bufferDesc.CPUAccessFlags	= cpuAccessFlag;
+		bufferDesc.MiscFlags		= 0;
 
 		D3D11_SUBRESOURCE_DATA* pSubresData = NULL;
 
@@ -55,9 +55,9 @@ namespace Kz
 		{
 			D3D11_SUBRESOURCE_DATA initData;
 
-			initData.pSysMem = data;
-			initData.SysMemPitch = 0;
-			initData.SysMemSlicePitch = 0;
+			initData.pSysMem			= data;
+			initData.SysMemPitch		= 0;
+			initData.SysMemSlicePitch	= 0;
 
 			pSubresData = &initData;
 		}

@@ -31,16 +31,27 @@ void App::OnInit()
 
 	camera = &viewport.m_camera;
 
-	Kz::Texture2D* stonewall = m_sceneManager.GetTextureCreator().CreateTexture2D("..//Textures//stonewall.tga");
+	Kz::Texture2D* stonewall = 
+		m_sceneManager.GetTextureCreator().CreateTexture2D("..//Textures//stonewall.tga");
 
-	Kz::Shader* animVertShader = m_sceneManager.GetRenderSystem().m_shaderManager.CreateShader(Kz::VERT_SHADER, "..//Sample//shaders//AnimGeomPassVert.cso");
-	Kz::Shader* primitiveVertShader = m_sceneManager.GetRenderSystem().m_shaderManager.CreateShader(Kz::VERT_SHADER, "..//Sample//shaders//PrimitivesVert.cso");
-	Kz::Shader* geometryPassFrag = m_sceneManager.GetRenderSystem().m_shaderManager.CreateShader(Kz::FRAG_SHADER, "..//Sample//shaders//GeometryPassFrag.cso");
+	Kz::Shader* animVertShader = m_sceneManager.GetRenderSystem().m_shaderManager.
+		CreateShader(Kz::VERT_SHADER, "..//Sample//shaders//AnimGeomPassVert.cso");
+
+	Kz::Shader* primitiveVertShader = m_sceneManager.GetRenderSystem().m_shaderManager.
+		CreateShader(Kz::VERT_SHADER, "..//Sample//shaders//PrimitivesVert.cso");
+
+	Kz::Shader* geometryPassFrag = m_sceneManager.GetRenderSystem().m_shaderManager.
+		CreateShader(Kz::FRAG_SHADER, "..//Sample//shaders//GeometryPassFrag.cso");
 	
-	Kz::ShaderProgram* animProgram = m_sceneManager.GetRenderSystem().m_shaderManager.CreateShaderProgram({ animVertShader, geometryPassFrag });
-	Kz::ShaderProgram* staticProgram = m_sceneManager.GetRenderSystem().m_shaderManager.CreateShaderProgram({ primitiveVertShader, geometryPassFrag });
+	Kz::ShaderProgram* animProgram = m_sceneManager.GetRenderSystem().m_shaderManager.
+		CreateShaderProgram({ animVertShader, geometryPassFrag });
 
-	Kz::Entity* ember = m_sceneManager.GetEntityManager().CreateEntity("..\\Models\\Ember\\Ember.mesh.xml", *animProgram);
+	Kz::ShaderProgram* staticProgram = m_sceneManager.GetRenderSystem().m_shaderManager.
+		CreateShaderProgram({ primitiveVertShader, geometryPassFrag });
+
+	Kz::Entity* ember = m_sceneManager.GetEntityManager().
+		CreateEntity("..\\Models\\Ember\\Ember.mesh.xml", *animProgram);
+
 	ember->GetAnimationSystem().EnqueueAnimation("Attack1");
 	ember->GetAnimationSystem().EnqueueAnimation("Attack1");
 	ember->GetAnimationSystem().EnqueueAnimation("Attack1");
@@ -50,7 +61,9 @@ void App::OnInit()
 
 	ember->SetCastingShadow(true);
 
-	Kz::Entity* ember2 = m_sceneManager.GetEntityManager().CreateEntity("..\\Models\\Ember\\Ember.mesh.xml", *animProgram);
+	Kz::Entity* ember2 = m_sceneManager.GetEntityManager().
+		CreateEntity("..\\Models\\Ember\\Ember.mesh.xml", *animProgram);
+
 	ember2->GetAnimationSystem().EnqueueAnimation("Attack1");
 
 	ember2->SetCastingShadow(true);
@@ -110,7 +123,8 @@ void App::OnInit()
 	MoveForwardCommand* walk = new MoveForwardCommand(ember);
 	StopMoveCommand* idle = new StopMoveCommand(ember);
 	ExitCommand* exit = new ExitCommand(this);
-	CameraMoveCommand* cameraMove = new CameraMoveCommand(m_mainWindow, &viewport.m_camera, characterNode->GetPosition());
+	CameraMoveCommand* cameraMove 
+		= new CameraMoveCommand(m_mainWindow, &viewport.m_camera, characterNode->GetPosition());
 	LockMouseCommand* lockMouse = new LockMouseCommand(m_mainWindow);
 	UnlockMouseCommand* unlockMouse = new UnlockMouseCommand(m_mainWindow);
 

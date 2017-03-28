@@ -12,15 +12,15 @@ namespace Kz
 
 	private:
 
-		Entity*             m_lightCube;
+		Entity*				m_lightCube;
 
 		DirectionalLight(Material& material);
 
-		virtual void        LightPass(RenderSystem& renderSystem);
+		virtual void		LightPass(RenderSystem& renderSystem);
 
 	public:
 
-		const Vector3f&     GetDirection() const;
-		void                SetDirection(const Vector3f& direction);
+		const Vector3f&		GetDirection() const;
+		void				SetDirection(const Vector3f& direction);
 	};
 }

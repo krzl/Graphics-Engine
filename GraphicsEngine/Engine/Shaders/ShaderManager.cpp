@@ -13,10 +13,17 @@ namespace Kz
 
 		ShaderProgram::shaderManager = this;
 
-		m_buffers[BUFFER_PER_FRAME]		= m_gd->CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, sizeof(RenderPerFrameInfo),  0, BUFFER_UPDATE_DYNAMIC);
-		m_buffers[BUFFER_PER_ENTITY]	= m_gd->CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, sizeof(RenderPerEntityInfo), 0, BUFFER_UPDATE_DYNAMIC);
-		m_buffers[BUFFER_PER_LIGHT]		= m_gd->CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, sizeof(RenderPerLightInfo),  0, BUFFER_UPDATE_DYNAMIC);
-		m_buffers[BUFFER_PER_SKINNING]	= m_gd->CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, sizeof(RenderPerSkinningInfo), 0, BUFFER_UPDATE_DYNAMIC);
+		m_buffers[BUFFER_PER_FRAME]		= m_gd->CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, 
+			sizeof(RenderPerFrameInfo),  0, BUFFER_UPDATE_DYNAMIC);
+
+		m_buffers[BUFFER_PER_ENTITY]	= m_gd->CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, 
+			sizeof(RenderPerEntityInfo), 0, BUFFER_UPDATE_DYNAMIC);
+
+		m_buffers[BUFFER_PER_LIGHT]		= m_gd->CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, 
+			sizeof(RenderPerLightInfo),  0, BUFFER_UPDATE_DYNAMIC);
+
+		m_buffers[BUFFER_PER_SKINNING]	= m_gd->CreateBuffer(BUFFER_TYPE_SHADER_RESOURCE, 
+			sizeof(RenderPerSkinningInfo), 0, BUFFER_UPDATE_DYNAMIC);
 
 		m_predefShaders.resize(PREDEF_SHADER_COUNT);
 		m_predefShaderPrograms.resize(PREDEF_SHADER_PROGRAM_COUNT);
@@ -92,7 +99,7 @@ namespace Kz
 		}
 		else
 		{
-			__debugbreak(); //TODO: assertion
+			__debugbreak();
 			return BUFFER_PER_FRAME;
 		}
 	}

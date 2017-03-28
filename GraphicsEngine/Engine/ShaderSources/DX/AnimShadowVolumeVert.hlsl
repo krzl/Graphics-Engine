@@ -1,30 +1,30 @@
 struct VertexIn
 {
-	float3      position : POSITION;
-	float3      normal   : NORMAL;
-	float2      texCoord : TEXCOORD;
-	float4      boneIndex : BLENDINDICES;
-	float4      boneWeight : BLENDWEIGHT;
+	float3		position : POSITION;
+	float3		normal   : NORMAL;
+	float2		texCoord : TEXCOORD;
+	float4		boneIndex : BLENDINDICES;
+	float4		boneWeight : BLENDWEIGHT;
 };
 
 struct VertexOut
 {
-	float4      position : SV_POSITION;
+	float4		position : SV_POSITION;
 };
 
 static const int MAX_BONES = 64;
 
 cbuffer PerEntity : register(b1)
 {
-	float4x4    pvmMatrix;
-	float4x4    modelMatrix;
-	float3      scaleVector;
-	float       perEntitySpacing0;
+	float4x4	pvmMatrix;
+	float4x4	modelMatrix;
+	float3		scaleVector;
+	float		perEntitySpacing0;
 };
 
 cbuffer PerSkinning : register(b3)
 {
-	float4x4    bonesData[MAX_BONES];
+	float4x4	bonesData[MAX_BONES];
 }
 
 VertexOut main(VertexIn vin)

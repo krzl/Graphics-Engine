@@ -20,12 +20,12 @@ namespace Kz
 
 	struct LogFile
 	{
-		short       logTypes;
-		FileWriter  fileWriter;
+		short		logTypes;
+		FileWriter	fileWriter;
 
-		LogFile(short types, const std::string& filename)
-			: logTypes(types)
-			, fileWriter(FileWriter(filename))
+		LogFile(short types, const std::string& filename) :
+			logTypes(types), 
+			fileWriter(FileWriter(filename))
 		{}
 	};
 

@@ -77,7 +77,6 @@ namespace Kz
 
 	void GBufferDX::SetReadBuffer(TextureType textureType)
 	{
-		//glReadBuffer(GL_COLOR_ATTACHMENT0 + textureType); //TODO: REMOVE
 	}
 
 	void GBufferDX::Clear()
@@ -96,8 +95,6 @@ namespace Kz
 
 	void GBufferDX::CopyToMainFramebuffer(Viewport& viewport)
 	{
-		//TODO: Remove function
-		//This function is unnecessary in directx since light pass target is already set to back buffer
 	}
 
 	Texture& GBufferDX::GetTexture(TextureType textureType)

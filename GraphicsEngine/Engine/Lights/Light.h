@@ -22,29 +22,29 @@ namespace Kz
 
 	private:
 
-		static EntityManager*   GetEntityManager();
-		static void             SetEntityManager(EntityManager& modelManager);
+		static EntityManager*	GetEntityManager();
+		static void				SetEntityManager(EntityManager& modelManager);
 
 	protected:
 
-		SceneNode*              m_sceneNode;
-		RenderPerLightInfo      m_lightInfo;
+		SceneNode*				m_sceneNode;
+		RenderPerLightInfo		m_lightInfo;
 
-		static EntityManager*   m_entityManager;
+		static EntityManager*	m_entityManager;
 
 		Light(){}
 
-		void                    SetNode(SceneNode* sceneNode);
-		void                    SetLightPosition(RenderSystem& renderSystem);
-		virtual	void            LightPass(RenderSystem& renderSystem) = 0;
+		void					SetNode(SceneNode* sceneNode);
+		void					SetLightPosition(RenderSystem& renderSystem);
+		virtual	void			LightPass(RenderSystem& renderSystem) = 0;
 
 	public:
 
 		~Light();
 
-		const Vector4f&         GetDiffuse() const;
-		const Vector4f&         GetSpecular() const;
-		virtual void            SetDiffuse(Vector4f& diffuseColor);
-		virtual void            SetSpecular(Vector4f& specularColor);
+		const Vector4f&			GetDiffuse() const;
+		const Vector4f&			GetSpecular() const;
+		virtual void			SetDiffuse(Vector4f& diffuseColor);
+		virtual void			SetSpecular(Vector4f& specularColor);
 	};
 }

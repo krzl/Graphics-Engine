@@ -11,9 +11,9 @@ namespace Kz
 
 		Matrix4f leftMatrix;
 
-		leftMatrix[3] = -m_position.x;
-		leftMatrix[7] = -m_position.y;
-		leftMatrix[11] = -m_position.z;
+		leftMatrix[3]	= -m_position.x;
+		leftMatrix[7]	= -m_position.y;
+		leftMatrix[11]	= -m_position.z;
 
 		Matrix4f rightMatrix;
 		rightMatrix.Insert(Vector4f(xAxis, 0.0f), 0);
@@ -54,8 +54,8 @@ namespace Kz
 
 	void Camera::MoveCamera(float yaw, float pitch)
 	{
-		m_pitch -= pitch;
-		m_yaw += yaw;
+		m_pitch	-= pitch;
+		m_yaw	+= yaw;
 
 		m_pitch = fmin(m_pitch, 1.56f);
 		m_pitch = fmax(m_pitch, -1.56f);

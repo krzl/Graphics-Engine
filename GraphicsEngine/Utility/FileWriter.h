@@ -9,14 +9,14 @@ namespace Kz
 	{
 	private:
 
-		FILE*           m_file;
+		FILE*			m_file;
 
 	public:
 
 		FileWriter(const std::string& filePath);
 		~FileWriter();
 
-		void            WriteLine(const std::string& line);
-		bool            IsFailed();
+		void			WriteLine(const std::string& line);
+		bool			IsFailed();
 	};
 }

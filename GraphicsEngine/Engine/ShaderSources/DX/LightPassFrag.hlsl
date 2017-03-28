@@ -5,72 +5,72 @@
 
 struct PixelIn
 {
-	float4      position  : SV_POSITION;
+	float4		position  : SV_POSITION;
 };
 
 struct PixelOut
 {
-	float4      fragColor : SV_TARGET0;
+	float4		fragColor : SV_TARGET0;
 };
 
 cbuffer PerFrame : register(b0)
 {
-	float4x4    pvMatrix;
-	float3      cameraPos;
-	float       perFrameSpacing0;
-	float3      cameraUp;
-	float       perFrameSpacing1;
-	float2      screenSize;
-	float       deltaTime;
-	float       perFrameSpacing2;
+	float4x4	pvMatrix;
+	float3		cameraPos;
+	float		perFrameSpacing0;
+	float3		cameraUp;
+	float		perFrameSpacing1;
+	float2		screenSize;
+	float		deltaTime;
+	float		perFrameSpacing2;
 };
 
 cbuffer PerLight : register(b2)
 {
-	float3      position;
-	int         type;
-	float4      ambient;
-	float4      diffuse;
-	float4      specular;
-	float3      direction;
-	float       cutoff;
-	float3      attenuation;
-	int         spotExponent;
+	float3		position;
+	int			type;
+	float4		ambient;
+	float4		diffuse;
+	float4		specular;
+	float3		direction;
+	float		cutoff;
+	float3		attenuation;
+	int			spotExponent;
 };
 
-Texture2D positionMap;
-SamplerState positionSampler;
+Texture2D		positionMap;
+SamplerState	positionSampler;
 
-Texture2D colorMap;
-SamplerState colorSampler;
+Texture2D		colorMap;
+SamplerState	colorSampler;
 
-Texture2D normalMap;
-SamplerState normalSampler;
+Texture2D		normalMap;
+SamplerState	normalSampler;
 
 float4 CalcPointLight(float3 worldPos, float3 normal)
 {
-	float3 lightDir = worldPos - position;
-	float distance  = length(lightDir);
-	lightDir        = normalize(lightDir);
+	float3 lightDir	= worldPos - position;
+	float distance	= length(lightDir);
+	lightDir		= normalize(lightDir);
 
-	float4 diffuseColor  = float4(0, 0, 0, 0);
-	float4 specularColor = float4(0, 0, 0, 0);
+	float4 diffuseColor		= float4(0, 0, 0, 0);
+	float4 specularColor	= float4(0, 0, 0, 0);
 
-	float diffuseFactor = dot(normal, -lightDir);
+	float diffuseFactor		= dot(normal, -lightDir);
 
 	if (diffuseFactor > 0.0)
 	{
 		diffuseColor = diffuse * diffuseFactor;
 
-		float3 vertexToCam  = normalize(cameraPos - worldPos);
-		float3 lightReflect = normalize(reflect(lightDir, normal));
+		float3 vertexToCam	= normalize(cameraPos - worldPos);
+		float3 lightReflect	= normalize(reflect(lightDir, normal));
 
 		float specularFactor = dot(vertexToCam, lightReflect);
 
 		if (specularFactor > 0.0f)
 		{
-			specularFactor = pow(abs(specularFactor), 20);
-			specularColor  = specular * specularFactor;
+			specularFactor	= pow(abs(specularFactor), 20);
+			specularColor	= specular * specularFactor;
 		}
 	}
 
@@ -86,23 +86,23 @@ float4 CalcPointLight(float3 worldPos, float3 normal)
 
 float4 CalcDirectionalLight(float3 worldPos, float3 normal)
 {
-	float4 diffuseColor  = float4(0, 0, 0, 0);
-	float4 specularColor = float4(0, 0, 0, 0);
-	float diffuseFactor = dot(normal, -direction);
+	float4 diffuseColor		= float4(0, 0, 0, 0);
+	float4 specularColor	= float4(0, 0, 0, 0);
+	float diffuseFactor		= dot(normal, -direction);
 
 	if (diffuseFactor > 0.0f)
 	{
 		diffuseColor = diffuse * diffuseFactor;
 
-		float3 vertexToEye  = normalize(cameraPos - worldPos);
-		float3 lightReflect = normalize(reflect(direction, normal));
+		float3 vertexToEye	= normalize(cameraPos - worldPos);
+		float3 lightReflect	= normalize(reflect(direction, normal));
 
 		float specularFactor = dot(vertexToEye, lightReflect);
 
 		if (specularFactor > 0.0f)
 		{
-			specularFactor = pow(abs(specularFactor), 20);
-			specularColor  = specular * specularFactor;
+			specularFactor	= pow(abs(specularFactor), 20);
+			specularColor	= specular * specularFactor;
 		}
 	}
 
@@ -111,8 +111,8 @@ float4 CalcDirectionalLight(float3 worldPos, float3 normal)
 
 float4 CalcSpotLight(float3 worldPos, float3 normal)
 {
-	float3 lightDir = worldPos - position;
-	float distance  = length(lightDir);
+	float3 lightDir	= worldPos - position;
+	float distance	= length(lightDir);
 	
 	lightDir = normalize(lightDir);
 	float cosLight = max(0.0f, dot(-lightDir, normalize(position - direction)));
@@ -123,8 +123,8 @@ float4 CalcSpotLight(float3 worldPos, float3 normal)
 	}
 	else
 	{
-		float4 diffuseColor  = float4(0, 0, 0, 0);
-		float4 specularColor = float4(0, 0, 0, 0);
+		float4 diffuseColor		= float4(0, 0, 0, 0);
+		float4 specularColor	= float4(0, 0, 0, 0);
 
 		float diffuseFactor = dot(normal, -lightDir);
 
@@ -132,11 +132,11 @@ float4 CalcSpotLight(float3 worldPos, float3 normal)
 		{
 			diffuseColor = diffuse * diffuseFactor;
 
-			float3 vertexToEye   = normalize(cameraPos - worldPos);
-			float3 lightReflect  = normalize(reflect(lightDir, normal));
+			float3 vertexToEye	= normalize(cameraPos - worldPos);
+			float3 lightReflect	= normalize(reflect(lightDir, normal));
 
-			float specularFactor = dot(vertexToEye, lightReflect);
-			specularFactor       = pow(abs(specularFactor), 20);
+			float specularFactor	= dot(vertexToEye, lightReflect);
+			specularFactor			= pow(abs(specularFactor), 20);
 
 			if (specularFactor > 0)
 			{
@@ -161,10 +161,10 @@ PixelOut main(PixelIn pin)
 {
 	PixelOut pout;
 
-	float2 texCoord = pin.position.xy / screenSize;
-	float3 worldPos = positionMap.Sample(positionSampler, texCoord).xyz;
-	float3 color    = colorMap.   Sample(colorSampler,    texCoord).xyz;
-	float3 normal   = normalMap.  Sample(normalSampler,   texCoord).xyz;
+	float2 texCoord	= pin.position.xy / screenSize;
+	float3 worldPos	= positionMap.	Sample(positionSampler,	texCoord).xyz;
+	float3 color	= colorMap.		Sample(colorSampler,	texCoord).xyz;
+	float3 normal	= normalMap.	Sample(normalSampler,	texCoord).xyz;
 
 	normal = normalize(normal);
 

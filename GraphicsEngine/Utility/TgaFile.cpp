@@ -18,8 +18,11 @@ namespace Kz
 		}
 
 		std::uint8_t header[18] = { 0 };
-		static std::uint8_t deCompressedHeader[12] = { 0x0, 0x0, 0x2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
-		static std::uint8_t isCompressedHeader[12] = { 0x0, 0x0, 0xA, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+		static std::uint8_t deCompressedHeader[12] = 
+		{ 0x0, 0x0, 0x2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+		static std::uint8_t isCompressedHeader[12] = 
+		{ 0x0, 0x0, 0xA, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
 
 		file.read(reinterpret_cast<char*>(&header), sizeof(header));
 
@@ -120,27 +123,27 @@ namespace Kz
 				}
 			} while (currentPixel < (unsigned int)(m_width * m_height));
 		}
-		else
-		{
-			//TODO: logging, invalid header
-		}
 
 		file.close();
 	}
 
-	int TgaFile::GetWidth(){
+	int TgaFile::GetWidth()
+	{
 		return m_width;
 	}
 
-	int TgaFile::GetHeight(){
+	int TgaFile::GetHeight()
+	{
 		return m_height;
 	}
 
-	int TgaFile::GetBitsPerPixel(){
+	int TgaFile::GetBitsPerPixel()
+	{
 		return m_bitsPerPixel;
 	}
 
-	std::vector<std::uint8_t>& TgaFile::GetImageData(){
+	std::vector<std::uint8_t>& TgaFile::GetImageData()
+	{
 		return m_imageData;
 	}
 }

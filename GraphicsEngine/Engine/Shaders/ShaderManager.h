@@ -43,40 +43,40 @@ namespace Kz
 
 	struct RenderPerFrameInfo
 	{
-		Matrix4f    pvMatrix;
-		Vector3f    cameraPos;
-		float       spacing0;
-		Vector3f    cameraUp;
-		float       spacing1;
-		Vector2f    screenSize;
-		float       deltaTime;
-		float       spacing2;
+		Matrix4f	pvMatrix;
+		Vector3f	cameraPos;
+		float		spacing0;
+		Vector3f	cameraUp;
+		float		spacing1;
+		Vector2f	screenSize;
+		float		deltaTime;
+		float		spacing2;
 	};
 
 	struct RenderPerEntityInfo
 	{
-		Matrix4f    pvmMatrix;
-		Matrix4f    modelMatrix;
-		Vector3f    scaleVector;
-		int         entityID;
+		Matrix4f	pvmMatrix;
+		Matrix4f	modelMatrix;
+		Vector3f	scaleVector;
+		int			entityID;
 	};
 
 	struct RenderPerLightInfo
 	{
-		Vector3f    position;
-		int         type;
-		Vector4f    ambient;
-		Vector4f    diffuse;
-		Vector4f    specular;
-		Vector3f    direction;
-		float       cutoff;
-		Vector3f    attenuation;
-		int         spotExponent;
+		Vector3f	position;
+		int			type;
+		Vector4f	ambient;
+		Vector4f	diffuse;
+		Vector4f	specular;
+		Vector3f	direction;
+		float		cutoff;
+		Vector3f	attenuation;
+		int			spotExponent;
 	};
 
 	struct RenderPerSkinningInfo
 	{
-		Matrix4f    bonesData[MAX_BONES];
+		Matrix4f	bonesData[MAX_BONES];
 	};
 
 	enum BufferName
@@ -94,26 +94,26 @@ namespace Kz
 
 	private:
 
-		Buffer*                         m_buffers[BUFFER_COUNT];
-		GraphicsDevice*                 m_gd;
+		Buffer*							m_buffers[BUFFER_COUNT];
+		GraphicsDevice*					m_gd;
 
-		std::vector<Shader*>            m_predefShaders;
-		std::vector<ShaderProgram*>     m_predefShaderPrograms;
-		std::vector<Material*>          m_materials;
+		std::vector<Shader*>			m_predefShaders;
+		std::vector<ShaderProgram*>		m_predefShaderPrograms;
+		std::vector<Material*>			m_materials;
 
-		void                            Init(GraphicsDevice& gd);
+		void							Init(GraphicsDevice& gd);
 
 	public:
 
-		Buffer&                         GetBuffer(const std::string& name);
-		Buffer&                         GetBuffer(BufferName buffer);
-		BufferName                      GetBufferType(const std::string& name);
-		void                            SetBuffer(BufferName buffer, void* data, int dataSize);
+		Buffer&							GetBuffer(const std::string& name);
+		Buffer&							GetBuffer(BufferName buffer);
+		BufferName						GetBufferType(const std::string& name);
+		void							SetBuffer(BufferName buffer, void* data, int dataSize);
 
-		Shader*                         CreateShader(ShaderType type, std::string filename);
-		ShaderProgram*                  CreateShaderProgram(std::initializer_list<Shader*> shaders);
+		Shader*							CreateShader(ShaderType type, std::string filename);
+		ShaderProgram*					CreateShaderProgram(std::initializer_list<Shader*> shaders);
 
-		Material*                       GetPredefMaterial(PredefShaderProgram shaderProgram);
+		Material*						GetPredefMaterial(PredefShaderProgram shaderProgram);
 
 		~ShaderManager();
 	};
