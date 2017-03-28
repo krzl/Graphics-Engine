@@ -9,7 +9,9 @@ Wykorzystuje modele z gry Torchlight, stworzone przez Runic Games, Inc.
 Sterowanie:
 
 LPM - Obrót kamery
+
 W - Rozpoczęcie animacji chodzenia
+
 ESC - Zamknięcie aplikacji
 
 ![screenshot](http://i.imgur.com/wU9PsFo.png)
