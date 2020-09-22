@@ -25,6 +25,7 @@ namespace Kz
 
 	LRESULT WinWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
+		static bool waitForExitSizeMove = false;
 		switch (message)
 		{
 		case WM_ACTIVATE:
@@ -46,11 +47,24 @@ namespace Kz
 		case WM_KEYDOWN:
 		case WM_KEYUP:
 			return KeyboardCallback(wParam, message);
+
+
+		case WM_ENTERSIZEMOVE:
+			waitForExitSizeMove = true;
+			return 0;
 			
 		case WM_SIZE:
 			OnResize( LOWORD( lParam ), HIWORD( lParam ) );
+			if( !waitForExitSizeMove ) {
+				FinalizeResize();
+			}
 			return 0;
 
+		case WM_EXITSIZEMOVE:
+			waitForExitSizeMove = false;
+			FinalizeResize();
+			return 0;
+			
 		case WM_LBUTTONDOWN:
 		case WM_LBUTTONUP:
 		case WM_RBUTTONDOWN:

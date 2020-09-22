@@ -58,6 +58,7 @@ namespace Kz
 		Viewport&						CreateViewport();
 		void							RemoveViewport(Viewport& viewport);
 		void							OnResize(int windowWidth, int windowHeight);
+		void							FinalizeResize();
 		bool							IsClosed() const;
 		bool							IsVisible() const;
 		float							GetAspectRatio() const;

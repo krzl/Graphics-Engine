@@ -80,12 +80,15 @@ namespace Kz
 		m_width		= width;
 		m_height	= height;
 
+	}
+
+	void Window::FinalizeResize() {
 		for (Viewport* viewport : m_viewports)
 		{
 			viewport->Resize();
 		}
 
-		m_gd.OnResize( width, height );
+		m_gd.OnResize( m_width, m_height );
 	}
 
 	void Window::Update(RenderSystem& renderSystem)
