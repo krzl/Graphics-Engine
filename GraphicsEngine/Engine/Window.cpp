@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Viewport.h"
 #include "RenderSystem.h"
+#include "GraphicsDevice.h"
 
 namespace Kz
 {
@@ -83,6 +84,8 @@ namespace Kz
 		{
 			viewport->Resize();
 		}
+
+		m_gd.OnResize( width, height );
 	}
 
 	void Window::Update(RenderSystem& renderSystem)
