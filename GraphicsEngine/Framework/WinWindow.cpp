@@ -46,6 +46,10 @@ namespace Kz
 		case WM_KEYDOWN:
 		case WM_KEYUP:
 			return KeyboardCallback(wParam, message);
+			
+		case WM_SIZE:
+			OnResize( LOWORD( lParam ), HIWORD( lParam ) );
+			return 0;
 
 		case WM_LBUTTONDOWN:
 		case WM_LBUTTONUP:
